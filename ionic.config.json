@@ -1,0 +1,7 @@
+{
+  "name": "SkilsIdentifier",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
