@@ -1,0 +1,13 @@
+footbar {
+	ion-toolbar{
+		min-height: 50px !important;
+		.toolbar-background{
+			background-color: #fafafa !important;		
+		}
+		
+		.footnote{
+			text-align: center;
+			font-size: 0.8em;
+		}
+	}
+}
