@@ -39,6 +39,7 @@ export class SkillsPage {
 	skillsSelected: skillInformation[] = [];
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
+	resumeTemplate: string = "";
 
 	loading = this._loadingCtrl.create({
 			spinner: 'dots'
@@ -200,17 +201,29 @@ export class SkillsPage {
 							}
 							
 						}
+						// if we found any relevant skills for this job, include it in the resume
+						if (k > 0) {
+							this.createResumeEntry(index)
+						}
 						// console.log(this.skillsPossessed[index])
 				})
 			}
 		}
-		// now that we have an array of skills possessed, figure out which are relevant 
-		for (let index in this.currentJob) {
-			let job = this.currentJob[index]
-			if (job.title != '') {
+		
+	}
 
+	createResumeEntry(int: idx) {
+		for (let index in this.currentJob) {
+			let job = this.currentJob[index];
+			if(this.skillsPossessed[index] != []) {
+				this.resumeTemplate = this.resumeTemplate + job.title + "\n"
+				for (let skill of this.skillsPossessed[index]) {
+					this.resumeTemplate = this.resumeTemplate + skill.skill_name + ": " + skill.description + "\n";
+				}
 			}
 		}
+		console.log(this.resumeTemplate)
+
 	}
 
 	// sets up the pdf resume
