@@ -68,40 +68,17 @@ export class HomePage {
 		this._jobDataProvider.setCurrentJob(this.currentJob);
 		this._jobDataProvider.setDreamJob(this.dreamJob);
 
-		console.log(this._jobDataProvider.currentJob);
-		console.log(this._jobDataProvider.dreamJob);
-
 		this.navCtrl.push("skills")
-
-		// this._jobDataProvider.getOnetCode(this.currentJob.parent_uuid)
-		// 	.subscribe(res =>{
-		// 		this.currentJob.onet_soc_code = res;
-
-		// 		this._jobDataProvider.getOnetCode(this.dreamJob.parent_uuid)
-		// 			.subscribe(res => {
-		// 				this.dreamJob.onet_soc_code = res;
-
-		// 				this._jobDataProvider.setCurrentJob(this.currentJob);
-		// 				this._jobDataProvider.setDreamJob(this.dreamJob);
-
-		// 				console.log(this._jobDataProvider.currentJob);
-		// 				console.log(this._jobDataProvider.dreamJob);
-
-		// 				this.navCtrl.push("skills")
-		// 			})
-		// 	})
 
 	}
 
 	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion 
 
 	onInputCurrentJob(event: any, i: number){
-		console.log("input ", event)
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter") 
 			if (this.currentJob[i].title.length > 3)
 				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
 				.subscribe(res => {
-					console.log(res)
 					this.jobAutocompleteList = res;
 					this.currentSelected = 0;
 				},
@@ -112,26 +89,21 @@ export class HomePage {
 				this.jobAutocompleteList = []
 
 		if (event.key == "ArrowDown") {
-			console.log(this.currentSelected)
 			this.currentSelected ++;
 		}
 		else if (event.key == "ArrowUp") {
-			console.log(this.currentSelected)
 			this.currentSelected --;
 		}
 		else if (event.key == "Enter") {
-			console.log(this.jobAutocompleteList[this.currentSelected]);
 			this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 1)
 		}
 	}
 
 	onInputDreamJob(event: any){
-		console.log("input ", event)
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter") 
 			if (this.dreamJob.title.length > 3)
 				this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
 				.subscribe(res => {
-					console.log(res)
 					this.jobAutocompleteList = res;
 					this.currentSelected = 0;
 				},
@@ -142,25 +114,20 @@ export class HomePage {
 				this.jobAutocompleteList = []
 
 		if (event.key == "ArrowDown" && this.currentSelected < this.jobAutocompleteList.length) {
-			console.log(this.currentSelected)
 			this.currentSelected ++;
 		}
 		else if (event.key == "ArrowUp" && this.currentSelected > 0) {
-			console.log(this.currentSelected)
 			this.currentSelected --;
 		}
 		else if (event.key == "Enter") {
-			console.log(this.jobAutocompleteList[this.currentSelected]);
 			this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 2)
 		}
 	}
 
 	onChangeJobTitle(event: any){
-		console.log("change ", event)
 		if (event.value.length > 3)
 			this._jobDataProvider.getJobAutocomplete(event.value)
 			.subscribe(res => {
-				console.log(res)
 				this.jobAutocompleteList = res;
 			})
 		if (event.value.length == 0) 

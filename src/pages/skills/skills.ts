@@ -3,12 +3,8 @@ import { NavController, NavParams, LoadingController, AlertController, IonicPage
 import * as jsPdf from 'jspdf';
 
 import { HomePage } from '../../pages/home/home';
-// import { ModalSkillsPage } from '../../pages/modal-skills/modal-skills';
-// import { RelatedJobsPage } from '../../pages/related-jobs/related-jobs';
 import { JobDataProvider } from '../../providers/job-data/job-data';
-
 import { FootbarComponent } from '../../components/footbar/footbar';
-
 import { jobInformation, skillInformation } from '../../assets/data/dataModel';
 
 
@@ -98,60 +94,12 @@ export class SkillsPage {
 			this.loading.dismiss();
 			this.navCtrl.push("home")
 		}
-		console.log(this.skillsRequired)
-		console.log(this.skillsPossessed)
+		// console.log("skills required:", this.skillsRequired)
+		// console.log("skills possessed:", this.skillsPossessed)
 	}
 
 	ngOnDestroy(){
 		this.loading.dismiss();
-	}
-
-	presentDescriptionAlert(item: skillInformation){
-		let descriptionAlert = this._alertCtrl.create({
-			title: item.name,
-			message: item.description,
-			buttons: [
-				{
-					text: "I'd like to develop this",
-					handler: data => {
-						if (this.skillsSelectedLength < 3) {
-							this.skillsSelected.push(item);
-							item.selected = true;
-							console.log(this.skillsSelected);
-							this.skillsSelectedLength += 1;
-							console.log(this.skillsSelectedLength);
-						} else {
-							this.presentMaxSkillAlert();
-						}
-					}
-				},
-				"Dismiss"
-			]
-		});
-
-		if (!item.selected || item.selected == null) 
-			descriptionAlert.present()
-		else {
-			console.log("here");
-			item.selected = false;
-			this.skillsSelectedLength -= 1;
-			var index = this.skillsSelected.indexOf(item, 0);
-			if (index > -1) {
-				this.skillsSelected.splice(index, 1)
-			}
-			console.log(this.skillsSelected);
-			console.log(this.skillsSelectedLength);
-		}
-	}
-
-	presentMaxSkillAlert(){
-		let maxSkillAlert = this._alertCtrl.create({
-			title: "",
-			message: "Sorry, you can only select up to 3 skills",
-			buttons: ['Dismiss']
-		});
-
-		maxSkillAlert.present();
 	}
 
 	popView(){
@@ -177,10 +125,11 @@ export class SkillsPage {
 	//  skills that are relevant to the target job
 	identifyRelevantSkills() {
 		console.log(this.skillsRequired)
+		console.log("CURRENT JOB", this.currentJob);
 		// get skills for each past job and record the top 5 for each in the "skillsPossessed" array
-		for (let idx in this.currentJob) {
-			var index = idx;
-			let job = this.currentJob[index];
+
+		this.currentJob.forEach((job, index) =>{
+
 			if (job.title != '') {
 				console.log("Index = " + index)
 				this._jobDataProvider.getSkillset(job.uuid)
@@ -194,25 +143,23 @@ export class SkillsPage {
 						for (var i = 0; i < 20; i++) {
 							if (k < max && this.skillsRequiredTitles.includes(res.skills[i].skill_name)) {
 								this.skillsPossessed[index].push(res.skills[i]);
-								console.log("added " + res.skills[i].skill_name + " from " + job.title);
+								console.log("ADDED: " + res.skills[i].skill_name);
 								k++;
 							} else if (k < max) {
-								console.log(res.skills[i].skill_name + " not included in required skills.")
+								console.log("NOT REQUIRED: " + res.skills[i].skill_name)
 							}
-							
 						}
 						// if we found any relevant skills for this job, include it in the resume
 						if (k > 0) {
 							this.createResumeEntry(index)
 						}
-						// console.log(this.skillsPossessed[index])
 				})
 			}
-		}
+		})
 		
 	}
 
-	createResumeEntry(int: idx) {
+	createResumeEntry(idx: number) {
 		for (let index in this.currentJob) {
 			let job = this.currentJob[index];
 			if(this.skillsPossessed[index] != []) {
@@ -228,11 +175,12 @@ export class SkillsPage {
 
 	// sets up the pdf resume
 	downloadPdf(){
-		
+
 		let lines = []
+		console.log(this.skillsRequired);
 		lines.push("The six most important skills for " + this.dreamJob.title + " are:");
 		for (var i = 0; i < 6; i++) {
-			lines.push(this.skillsRequired[i]);
+			lines.push(this.skillsRequired[i].skill_name);
 		}
 		lines.push("");
 		for (let index in this.currentJob) {

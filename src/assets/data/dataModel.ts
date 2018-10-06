@@ -1,14 +1,21 @@
 export interface jobInformation{
-	id: string;
-	occupation: string;
-	group: string
+	title: string;
+	uuid: string;
+	parent_uuid: string;
 }
 
 export interface skillInformation{
-	name: string;
+	// name: string;
+	// description: string;
+	// score: number;
+	// selected: boolean;
+	skill_uuid: string;
+	skill_name: string;
+	skill_type: string;
+	normalized_skill_name: string;
+	level: number;
+	importance: number;
 	description: string;
-	score: number;
-	selected: boolean;
 }
 
 export interface gigInformation{
