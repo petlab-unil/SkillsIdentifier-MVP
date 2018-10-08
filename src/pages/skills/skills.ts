@@ -160,14 +160,14 @@ export class SkillsPage {
 	}
 
 	createResumeEntry(idx: number) {
-		for (let index in this.currentJob) {
-			let job = this.currentJob[index];
-			if(this.skillsPossessed[index] != []) {
-				this.resumeTemplate = this.resumeTemplate + job.title + "\n"
-				for (let skill of this.skillsPossessed[index]) {
-					this.resumeTemplate = this.resumeTemplate + skill.skill_name + ": " + skill.description + "\n";
-				}
+		let index = idx;
+		let job = this.currentJob[index];
+		if(this.skillsPossessed[index] != []) {
+			this.resumeTemplate = this.resumeTemplate + job.title + "\n"
+			for (let skill of this.skillsPossessed[index]) {
+				this.resumeTemplate = this.resumeTemplate + skill.skill_name + ": " + skill.description + "\n";
 			}
+			this.resumeTemplate = this.resumeTemplate + "\n"
 		}
 		console.log(this.resumeTemplate)
 
