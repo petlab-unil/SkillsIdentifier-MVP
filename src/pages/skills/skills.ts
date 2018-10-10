@@ -35,7 +35,7 @@ export class SkillsPage {
 	skillsSelected: skillInformation[] = [];
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
-	resumeTemplate: string = "";
+	resumeTemplate: string[] = [];
 
 	loading = this._loadingCtrl.create({
 			spinner: 'dots'
@@ -113,9 +113,15 @@ export class SkillsPage {
 						.subscribe(res => {
 							console.log(res);
 							this.skillsRequired = [];
-							for (var i = 0; i < 10; i++){
-								this.skillsRequired.push(res.skills[i])
-								this.skillsRequiredTitles.push(res.skills[i].skill_name)
+							let j = 0;
+							let i = 0;
+							while ( j < 10 && i < 100 ) {
+								if (res.skills[i].skill_type == "skill") {
+									this.skillsRequired.push(res.skills[i])
+									this.skillsRequiredTitles.push(res.skills[i].skill_name)
+									j++;
+								}
+								i++;
 							}
 							this.identifyRelevantSkills()
 						})
@@ -138,9 +144,9 @@ export class SkillsPage {
 						console.log(res);
 						// this.skillsPossessed[index] = [];
 						var k = 0;
-						var max = 5;
+						var max = 3;
 						// include only skills that are also relevant for the target job
-						for (var i = 0; i < 20; i++) {
+						for (var i = 0; i < 30; i++) {
 							if (k < max && this.skillsRequiredTitles.includes(res.skills[i].skill_name)) {
 								this.skillsPossessed[index].push(res.skills[i]);
 								console.log("ADDED: " + res.skills[i].skill_name);
@@ -162,14 +168,14 @@ export class SkillsPage {
 	createResumeEntry(idx: number) {
 		let index = idx;
 		let job = this.currentJob[index];
-		if(this.skillsPossessed[index] != []) {
-			this.resumeTemplate = this.resumeTemplate + job.title + "\n"
+		if (this.skillsPossessed[index] != []) {
+			this.resumeTemplate[index] = job.title + "\n"
 			for (let skill of this.skillsPossessed[index]) {
-				this.resumeTemplate = this.resumeTemplate + skill.skill_name + ": " + skill.description + "\n";
+				this.resumeTemplate[index] = this.resumeTemplate[index] + skill.skill_name + "\n";
 			}
-			this.resumeTemplate = this.resumeTemplate + "\n"
+			this.resumeTemplate[index] = this.resumeTemplate[index] + "\n"
 		}
-		console.log(this.resumeTemplate)
+		console.log(this.resumeTemplate[index])
 
 	}
 

@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>
-		    Your New Resume
+		    Your New Resume!
 		</ion-title>
 	</ion-navbar>
 
@@ -11,7 +11,7 @@
 
 <ion-content padding>
 	<ion-row>
-		<div col-6>
+		<!-- <div col-6>
 			<div *ngFor="let job of currentJob; let idx=index">
 				<h2>{{ job.title }}</h2>
 				<ul>
@@ -21,10 +21,12 @@
 					</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 
 		<div col-6>
-			<ion-textarea [(ngModel)]="resumeTemplate"></ion-textarea>
+			<div *ngFor="let entry of resumeTemplate; let idx=index">
+				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>
+			</div>
 		</div>
 	</ion-row>
 
@@ -44,8 +46,8 @@
 		</div>
 	</div>
 
-	<button ion-button block (click)="downloadPdf()">
-		Download Resume
+	<button ion-button block (click)="sendEmail()">
+		Send by email
 	</button>
 
 </ion-footer>
