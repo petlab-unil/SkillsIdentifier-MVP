@@ -173,40 +173,44 @@ export class SkillsPage {
 			for (let skill of this.skillsPossessed[index]) {
 				this.resumeTemplate[index] = this.resumeTemplate[index] + skill.skill_name + "\n";
 			}
-			this.resumeTemplate[index] = this.resumeTemplate[index] + "\n"
 		}
 		console.log(this.resumeTemplate[index])
 
 	}
 
-	// sets up the pdf resume
-	downloadPdf(){
-
-		let lines = []
-		console.log(this.skillsRequired);
-		lines.push("The six most important skills for " + this.dreamJob.title + " are:");
-		for (var i = 0; i < 6; i++) {
-			lines.push(this.skillsRequired[i].skill_name);
-		}
-		lines.push("");
-		for (let index in this.currentJob) {
-			let job = this.currentJob[index];
-			lines.push(job.title)
-			for (let skill of this.skillsPossessed[index]) {
-				lines.push(skill.skill_name + ": " + skill.description);
-			}
-		}
-
-		this.resume.text(lines, 10, 10);
-		
-		this.resume.save("resume.pdf");
-
-		// this.resume.output('datauri')
-		// console.log(this.preview)
-
-		// let iframe = document.getElementById("pdfPreview")
-		// console.log(iframe);
-
-		// iframe.attr('src', this.resume.output('datauri'));
+	// emails the edited resume to the user
+	sendEmail(){
+		console.log(this.resumeTemplate)
 	}
+
+	// sets up the pdf resume
+	// downloadPdf(){
+
+	// 	let lines = []
+	// 	console.log(this.skillsRequired);
+	// 	lines.push("The six most important skills for " + this.dreamJob.title + " are:");
+	// 	for (var i = 0; i < 6; i++) {
+	// 		lines.push(this.skillsRequired[i].skill_name);
+	// 	}
+	// 	lines.push("");
+	// 	for (let index in this.currentJob) {
+	// 		let job = this.currentJob[index];
+	// 		lines.push(job.title)
+	// 		for (let skill of this.skillsPossessed[index]) {
+	// 			lines.push(skill.skill_name + ": " + skill.description);
+	// 		}
+	// 	}
+
+	// 	this.resume.text(lines, 10, 10);
+		
+	// 	this.resume.save("resume.pdf");
+
+	// 	// this.resume.output('datauri')
+	// 	// console.log(this.preview)
+
+	// 	// let iframe = document.getElementById("pdfPreview")
+	// 	// console.log(iframe);
+
+	// 	// iframe.attr('src', this.resume.output('datauri'));
+	// }
 }
