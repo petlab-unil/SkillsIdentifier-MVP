@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, IonicPage, ModalController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import * as jsPdf from 'jspdf';
 
@@ -51,7 +52,8 @@ export class SkillsPage {
 				private _alertCtrl: AlertController,
 				public navParams: NavParams,
 				private _jobDataProvider: JobDataProvider,
-				private _modalCtrl: ModalController) {
+				private _modalCtrl: ModalController,
+				private emailComposer: EmailComposer) {
 
 		this.currentJob = this._jobDataProvider.currentJob;
 		this.dreamJob   = this._jobDataProvider.dreamJob;
@@ -176,17 +178,41 @@ export class SkillsPage {
 		if (this.skillsPossessed[index] != []) {
 			this.resumeTemplate[index] = job.title + "\n"
 			for (let skill of this.skillsPossessed[index]) {
-				this.resumeTemplate[index] = this.resumeTemplate[index] + skill.skill_name + "\n";
+				this.resumeTemplate[index] = this.resumeTemplate[index] + '- ' + skill.skill_name + "\n";
 			}
 		}
 		console.log(this.resumeTemplate[index])
 
 	}
 
+
+	
 	// emails the edited resume to the user
-	sendEmail(){
+	sendEmail() {
+		let fullResume = ''
+		for (let entry of this.resumeTemplate) {
+			fullResume = fullResume + entry + '\n';
+		}
+		let email = {
+		to: this.emailAddress,
+		cc: '',
+		bcc: '',
+		attachments: [
+		
+		],
+		subject: 'Your SkillsIdentifier Resume Template',
+		body: fullResume,
+		isHtml: true
+		};
+
+		// this.emailComposer.isAvailable().then((available: boolean) =>{
+		// 	if(available) {
+		// 	//Now we know we can send
+		// 	}
+		// });
+
 		console.log(this.emailAddress)
-		console.log(this.resumeTemplate)
+		console.log(fullResume)
 	}
 
 	// sets up the pdf resume
