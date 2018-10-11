@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, IonicPage, ModalController } from 'ionic-angular';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import * as jsPdf from 'jspdf';
 
 import { HomePage } from '../../pages/home/home';
@@ -36,6 +38,9 @@ export class SkillsPage {
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
 	resumeTemplate: string[] = [];
+
+	emailForm: FormGroup;
+	emailAddress: string = '';
 
 	loading = this._loadingCtrl.create({
 			spinner: 'dots'
@@ -180,6 +185,7 @@ export class SkillsPage {
 
 	// emails the edited resume to the user
 	sendEmail(){
+		console.log(this.emailAddress)
 		console.log(this.resumeTemplate)
 	}
 

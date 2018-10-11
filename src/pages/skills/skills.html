@@ -1,5 +1,5 @@
 <ion-header>
-	<ion-navbar>
+	<ion-navbar hideBackButton>
 		<ion-title>
 		    Your New Resume!
 		</ion-title>
@@ -23,31 +23,48 @@
 			</div>
 		</div> -->
 
-		<div col-6>
+		<div col-8 class="resume">
 			<div *ngFor="let entry of resumeTemplate; let idx=index">
 				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>
 			</div>
 		</div>
+
+		<div col-4 class="email">
+	        <form #emailForm="ngForm">
+
+	        	<ion-label stacked>Please provide your email address:</ion-label>
+		        <ion-input class="input"
+		        		   type="email" 
+						   [(ngModel)]="emailAddress"
+						   name="email"
+						   clearInput="on">		        				   
+				</ion-input>
+
+				<button ion-button block type="submit" [disabled]="!emailForm.form.valid" (click)="sendEmail()">
+					<ion-icon name="mail-outline" large></ion-icon>&nbsp;Send by email
+				</button>	
+
+			</form>		
+
+		</div>
+
+
 	</ion-row>
 
 
 </ion-content>
 
-<ion-footer class="selection-bar">
+<!-- <ion-footer class="selection-bar">
 	
 	<div class="skills-bar">
-
-		<div class="selected-skills">
-			<div *ngFor="let skill of skillsSelected; let index = index;">
-		 		<ion-chip  *ngIf="skill.selected">
-					<ion-label>{{ skill.name }}</ion-label>
-				</ion-chip>
-			</div>
-		</div>
+        <ion-input type="email" 
+				   [(ngModel)]="emailAddress" 
+				   clearInput="on">		        				   
+		</ion-input>
 	</div>
 
 	<button ion-button block (click)="sendEmail()">
 		Send by email
 	</button>
 
-</ion-footer>
+</ion-footer> -->
