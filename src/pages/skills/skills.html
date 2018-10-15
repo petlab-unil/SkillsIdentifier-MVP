@@ -1,12 +1,10 @@
 <ion-header>
 	<ion-navbar hideBackButton>
 		<ion-title>
-		    Your New Resume Template! Review the information provided and edit the content as needed.
+		    Your New Resume Template!
 		</ion-title>
 	</ion-navbar>
 
- 	<ion-toolbar class="chip-bar">
- 	</ion-toolbar>
 </ion-header>
 
 <ion-content padding>
@@ -24,47 +22,22 @@
 		</div> -->
 
 		<div col-8 class="resume">
-			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
-			<div *ngFor="let entry of resumeTemplate; let idx=index">
-				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>
+			<div class="resume-textarea">
+				<h5>Please provide your personal information here: </h5>
+				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
+			</div>
+			<div class="resume-textarea">
+				<h5>Please review the information provided and edit the resume content as needed:</h5>
+				<div *ngFor="let entry of resumeTemplate; let idx=index">
+					<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>
+				</div>
 			</div>
 		</div>
 
-		<div col-4 class="email">
-			<button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>
-	        <!-- <form #emailForm="ngForm">
-
-	        	<ion-label stacked>Please provide your email address:</ion-label>
-		        <ion-input class="input"
-		        		   type="email" 
-						   [(ngModel)]="emailAddress"
-						   name="email"
-						   clearInput="on">		        				   
-				</ion-input>
-
-					
-
-			</form>	 -->	
+		<div col-4 class="control">
+			<button ion-button (click)="copyResume()" value="Copy Resume"> <ion-icon name="copy-outline"></ion-icon>&nbsp;COPY RESUME</button>
 
 		</div>
 
-
 	</ion-row>
-
-
 </ion-content>
-
-<!-- <ion-footer class="selection-bar">
-	
-	<div class="skills-bar">
-        <ion-input type="email" 
-				   [(ngModel)]="emailAddress" 
-				   clearInput="on">		        				   
-		</ion-input>
-	</div>
-
-	<button ion-button block (click)="sendEmail()">
-		Send by email
-	</button>
-
-</ion-footer> -->

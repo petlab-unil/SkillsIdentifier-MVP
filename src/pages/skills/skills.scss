@@ -8,6 +8,8 @@ page-skills {
 	font-family: "Avenir";
 
 	ion-navbar, .toolbar{
+
+		height: 100px !important;
 		
 		.toolbar-background{
 
@@ -17,7 +19,7 @@ page-skills {
 
 		ion-title{
 			padding-left: 0 !important;
-			padding-top: 30px !important;
+			padding-top: 10px !important;
 
 			.toolbar-title{
 				padding-left: 20px; 
@@ -25,7 +27,6 @@ page-skills {
 				text-align: left;
 				font-size: 20px;
 				font-weight: 900;
-				// text-transform: lowercase;
 			}
 		}
 
@@ -34,6 +35,18 @@ page-skills {
 			font-size: 14px;
 			margin-top: 0;
 		}
+	}
+
+	.resume-textarea{
+		margin-top: 10px !important;
+		margin-bottom: 30px !important;
+
+		h5{
+			font-weight: 600;
+			font-size: 16px;
+			color: #404040
+		}
+
 	}
 
 	ion-list{
@@ -55,14 +68,6 @@ page-skills {
 
 	}
 
-	ion-card{
-		padding: 15px;
-
-		h2{
-			font-weight: 800 !important;
-			text-transform: capitalize;
-		}
-	}
 
 	@media screen and (min-width: 992px){
 		ion-row{
@@ -79,117 +84,12 @@ page-skills {
 
 	}
 
+	.control{
 
-
-
-	.selection-bar{
-		border-top: rgba(0,0,0,0.3) 0.55px solid;
-		display: flex;
-		width: 100%;
-		margin: auto;
-		height: 100px !important;
-		padding: 0 20px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		background-color: #fff;
-		position: fixed;
-
-		.skills-bar{
-			display:flex;
-			flex-direction: column;
-			width: calc(100%-200px)
-
-			p{
-				margin: 2px 0;
-				padding: 0px !important;
-				font-weight: 500;
-				font-size: 12px;
-				color: #202020;
-			}
-
-
-
-			.selected-skills{
-				display: flex;
-
-				ion-chip{
-					margin-right: 5px;
-
-					ion-label{
-						font-weight: 600
-					}
-				}
-			}
-
-		}
-
-		@media screen and (max-width: 420px){
-			.skills-bar{
-
-				.selected-skills{
-					flex-wrap: wrap;
-					
-					ion-chip > ion-label{
-						font-size: 11px;
-					}
-				}
-			}
-
-		}
-
-		button{
-			height: 50px;
-			width: 200px;
-			border-radius: 25px;
-			font-weight: 600;
-			font-size: 14px;
-			letter-spacing: 2px;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-			background-color: #21d4fd;
-			background-image: linear-gradient(200deg, #21d4fd 0%, #b721ff 100%);
-		}
-
-		@media screen and (max-width: 420px){
-
-			button{
-				flex: 0 0 100px !important;
-				white-space: normal; 
-				line-height: 18px;
-				font-size: 12px;
-			}
-
-		}
-
-
-
-		button.activated{
-			background-color: #404040 !important;
-		}
-
-
-	}
-
-	
-	.email{
-
-		background-color: #f4f4f4;
+		background-color: transparent;
 		margin-top: 16px;
 		padding: 20px;
 		display: flex;
-
-		form{
-			width: 100%;
-		}
-
-		ion-input{
-			font-size: 14px;
-			margin: 0 !important;
-			color: #333333;
-			font-weight: 500;
-			background-color: transparent !important;
-			border-bottom: solid 1px #ccc;
-		}
 
 
 		ion-label{
@@ -205,6 +105,13 @@ page-skills {
 			font-weight: 800;
 		}
 
+		// .btn-7 {
+		// 	background: #17aa56;
+		// 	color: #fff;
+		// 	border-radius: 7px;
+		// 	box-shadow: 0 5px #119e4d;
+		// 	padding: 25px 60px 25px 90px;
+		// }
 
 
 		button{
@@ -219,8 +126,17 @@ page-skills {
 			letter-spacing: 2px;
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 			background-color: #21d4fd;
-			background-image: linear-gradient(200deg, #21d4fd 0%, #b721ff 100%);
+			background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+			color: white;
 		}
+
+		button.activated {
+			box-shadow: 0 0 0 rgba(0, 0, 0, 0.2); 
+			top: 4px;
+			opacity: 0.5 !important;
+		}
+		
+
 
 		@media screen and (max-width: 420px){
 

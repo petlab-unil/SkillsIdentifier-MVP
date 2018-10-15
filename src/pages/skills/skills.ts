@@ -1,9 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, IonicPage, ModalController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmailComposer } from '@ionic-native/email-composer';
-
-import * as jsPdf from 'jspdf';
 
 import { HomePage } from '../../pages/home/home';
 import { JobDataProvider } from '../../providers/job-data/job-data';
@@ -22,7 +19,6 @@ import { jobInformation, skillInformation } from '../../assets/data/dataModel';
 
 export class SkillsPage {
 
-	resume = new jsPdf();
 	preview: any;
 
 	currentJob = [ {'title': '', 'uuid': '', 'parent_uuid': ''},  {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''} ];
@@ -53,8 +49,7 @@ export class SkillsPage {
 				private _alertCtrl: AlertController,
 				public navParams: NavParams,
 				private _jobDataProvider: JobDataProvider,
-				private _modalCtrl: ModalController,
-				private emailComposer: EmailComposer) {
+				private _modalCtrl: ModalController) {
 
 		this.currentJob = this._jobDataProvider.currentJob;
 		this.dreamJob   = this._jobDataProvider.dreamJob;
@@ -68,33 +63,6 @@ export class SkillsPage {
 		if (this.dreamJob.title != '') {
 			
 			this.identifyRequiredSkills()
-			// this._jobDataProvider.getSkillset(this.dreamJob.uuid)
-			// 			.subscribe(res => {
-			// 				console.log(res);
-			// 				this.skillsRequired = [];
-			// 				for (var i = 0; i < 6; i++){
-			// 					this.skillsRequired.push(res.skills[i])
-			// 				}
-			// 			})
-
-			// this.identifyRelevantSkills()
-			// for (let idx in this.currentJob) {
-			// 	var index = idx;
-			// 	let job = this.currentJob[index]
-			// 	if (job.title != '') {
-			// 		console.log("Index = " + index)
-			// 		this._jobDataProvider.getSkillset(job.uuid)
-			// 			.subscribe(res => {
-			// 				console.log(res);
-			// 				// this.skillsPossessed[index] = [];
-			// 				for (var i = 0; i < 5; i++){
-			// 					this.skillsPossessed[index].push(res.skills[i])
-			// 				}
-			// 				console.log(this.skillsPossessed[index])
-			// 			})
-
-			// 	}
-			// }
 
 			this.loading.dismiss();
 
@@ -204,8 +172,20 @@ export class SkillsPage {
 	    selBox.select();
 	    document.execCommand('copy');
 	    document.body.removeChild(selBox);
-  	}
 
+	    this.presentAlert();
+
+  	}	
+
+  	presentAlert() {
+	  let alert = this._alertCtrl.create({
+	    title: 'Congratulations!',
+	    subTitle: 'Your new resume is copied',
+	    buttons: ['Dismiss']
+	  });
+	  console.log("alert")
+	  alert.present();
+	}
 	
 	// emails the edited resume to the user
 	// sendEmail() {
