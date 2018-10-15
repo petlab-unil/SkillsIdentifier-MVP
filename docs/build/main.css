@@ -25805,6 +25805,7 @@ page-skills ion-navbar ion-title, page-skills .toolbar ion-title {
 
 page-skills ion-navbar ion-title .toolbar-title, page-skills .toolbar ion-title .toolbar-title {
   padding-left: 20px;
+  padding-bottom: 10px;
   text-align: left;
   font-size: 20px;
   font-weight: 900;

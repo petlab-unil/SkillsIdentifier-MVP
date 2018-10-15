@@ -83,6 +83,7 @@ var SkillsPage = /** @class */ (function () {
         this.skillsSelected = [];
         this.skillsSelectedLength = 0;
         this.resumeTemplate = [];
+        this.resumeIntro = "<Enter your full name here>\n<Enter your phone number here>\n<Enter your email here>";
         this.emailAddress = '';
         this.loading = this._loadingCtrl.create({
             spinner: 'dots'
@@ -204,33 +205,28 @@ var SkillsPage = /** @class */ (function () {
         }
         console.log(this.resumeTemplate[index]);
     };
-    // emails the edited resume to the user
-    SkillsPage.prototype.sendEmail = function () {
-        var fullResume = '';
+    // copy the resume to the clipboard
+    SkillsPage.prototype.copyResume = function () {
+        var selBox = document.createElement('textarea');
+        selBox.style.position = 'fixed';
+        selBox.style.left = '0';
+        selBox.style.top = '0';
+        selBox.style.opacity = '0';
+        var fullResume = this.resumeIntro + "\n\n";
         for (var _i = 0, _a = this.resumeTemplate; _i < _a.length; _i++) {
             var entry = _a[_i];
-            fullResume = fullResume + entry + '\n';
+            fullResume = fullResume + entry + "\n";
         }
-        var email = {
-            to: this.emailAddress,
-            cc: '',
-            bcc: '',
-            attachments: [],
-            subject: 'Your SkillsIdentifier Resume Template',
-            body: fullResume,
-            isHtml: true
-        };
-        // this.emailComposer.isAvailable().then((available: boolean) =>{
-        // 	if(available) {
-        // 	//Now we know we can send
-        // 	}
-        // });
-        console.log(this.emailAddress);
-        console.log(fullResume);
+        selBox.value = fullResume;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
     };
     SkillsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-skills',template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/'<ion-header>\n	<ion-navbar hideBackButton>\n		<ion-title>\n		    Your New Resume!\n		</ion-title>\n	</ion-navbar>\n\n 	<ion-toolbar class="chip-bar">\n 	</ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-row>\n		<!-- <div col-6>\n			<div *ngFor="let job of currentJob; let idx=index">\n				<h2>{{ job.title }}</h2>\n				<ul>\n					<li *ngFor = "let skill of skillsPossessed[idx]">\n				  <h2>{{ skill.skill_name }}</h2>\n				  <p>{{ skill.description }}</p>\n					</li>\n				</ul>\n			</div>\n		</div> -->\n\n		<div col-8 class="resume">\n			<div *ngFor="let entry of resumeTemplate; let idx=index">\n				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>\n			</div>\n		</div>\n\n		<div col-4 class="email">\n	        <form #emailForm="ngForm">\n\n	        	<ion-label stacked>Please provide your email address:</ion-label>\n		        <ion-input class="input"\n		        		   type="email" \n						   [(ngModel)]="emailAddress"\n						   name="email"\n						   clearInput="on">		        				   \n				</ion-input>\n\n				<button ion-button block type="submit" [disabled]="!emailForm.form.valid" (click)="sendEmail()">\n					<ion-icon name="mail-outline" large></ion-icon>&nbsp;Send by email\n				</button>	\n\n			</form>		\n\n		</div>\n\n\n	</ion-row>\n\n\n</ion-content>\n\n<!-- <ion-footer class="selection-bar">\n	\n	<div class="skills-bar">\n        <ion-input type="email" \n				   [(ngModel)]="emailAddress" \n				   clearInput="on">		        				   \n		</ion-input>\n	</div>\n\n	<button ion-button block (click)="sendEmail()">\n		Send by email\n	</button>\n\n</ion-footer> -->'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/
+            selector: 'page-skills',template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/'<ion-header>\n	<ion-navbar hideBackButton>\n		<ion-title>\n		    Your New Resume Template! Review the information provided and edit the content as needed.\n		</ion-title>\n	</ion-navbar>\n\n 	<ion-toolbar class="chip-bar">\n 	</ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-row>\n		<!-- <div col-6>\n			<div *ngFor="let job of currentJob; let idx=index">\n				<h2>{{ job.title }}</h2>\n				<ul>\n					<li *ngFor = "let skill of skillsPossessed[idx]">\n				  <h2>{{ skill.skill_name }}</h2>\n				  <p>{{ skill.description }}</p>\n					</li>\n				</ul>\n			</div>\n		</div> -->\n\n		<div col-8 class="resume">\n			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>\n			<div *ngFor="let entry of resumeTemplate; let idx=index">\n				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>\n			</div>\n		</div>\n\n		<div col-4 class="email">\n			<button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>\n	        <!-- <form #emailForm="ngForm">\n\n	        	<ion-label stacked>Please provide your email address:</ion-label>\n		        <ion-input class="input"\n		        		   type="email" \n						   [(ngModel)]="emailAddress"\n						   name="email"\n						   clearInput="on">		        				   \n				</ion-input>\n\n					\n\n			</form>	 -->	\n\n		</div>\n\n\n	</ion-row>\n\n\n</ion-content>\n\n<!-- <ion-footer class="selection-bar">\n	\n	<div class="skills-bar">\n        <ion-input type="email" \n				   [(ngModel)]="emailAddress" \n				   clearInput="on">		        				   \n		</ion-input>\n	</div>\n\n	<button ion-button block (click)="sendEmail()">\n		Send by email\n	</button>\n\n</ion-footer> -->'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
