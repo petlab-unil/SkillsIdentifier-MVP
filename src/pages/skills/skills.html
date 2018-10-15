@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar hideBackButton>
 		<ion-title>
-		    Your New Resume!
+		    Your New Resume Template! Review the information provided and edit the content as needed.
 		</ion-title>
 	</ion-navbar>
 
@@ -24,13 +24,15 @@
 		</div> -->
 
 		<div col-8 class="resume">
+			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
 			<div *ngFor="let entry of resumeTemplate; let idx=index">
 				<ion-textarea [(ngModel)]="resumeTemplate[idx]"></ion-textarea>
 			</div>
 		</div>
 
 		<div col-4 class="email">
-	        <form #emailForm="ngForm">
+			<button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>
+	        <!-- <form #emailForm="ngForm">
 
 	        	<ion-label stacked>Please provide your email address:</ion-label>
 		        <ion-input class="input"
@@ -40,11 +42,9 @@
 						   clearInput="on">		        				   
 				</ion-input>
 
-				<button ion-button block type="submit" [disabled]="!emailForm.form.valid" (click)="sendEmail()">
-					<ion-icon name="mail-outline" large></ion-icon>&nbsp;Send by email
-				</button>	
+					
 
-			</form>		
+			</form>	 -->	
 
 		</div>
 

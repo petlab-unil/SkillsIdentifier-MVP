@@ -39,6 +39,7 @@ export class SkillsPage {
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
 	resumeTemplate: string[] = [];
+	resumeIntro: string = "<Enter your full name here>\n<Enter your phone number here>\n<Enter your email here>"
 
 	emailForm: FormGroup;
 	emailAddress: string = '';
@@ -185,35 +186,54 @@ export class SkillsPage {
 
 	}
 
+	// copy the resume to the clipboard
+	copyResume(){
+	    let selBox = document.createElement('textarea');
+	    selBox.style.position = 'fixed';
+	    selBox.style.left = '0';
+	    selBox.style.top = '0';
+	    selBox.style.opacity = '0';
+
+	    let fullResume = this.resumeIntro + "\n\n";
+	    for (let entry of this.resumeTemplate) {
+	    	fullResume = fullResume + entry + "\n";
+	    }
+	    selBox.value = fullResume;
+	    document.body.appendChild(selBox);
+	    selBox.focus();
+	    selBox.select();
+	    document.execCommand('copy');
+	    document.body.removeChild(selBox);
+  	}
 
 	
 	// emails the edited resume to the user
-	sendEmail() {
-		let fullResume = ''
-		for (let entry of this.resumeTemplate) {
-			fullResume = fullResume + entry + '\n';
-		}
-		let email = {
-		to: this.emailAddress,
-		cc: '',
-		bcc: '',
-		attachments: [
+	// sendEmail() {
+	// 	let fullResume = ''
+	// 	for (let entry of this.resumeTemplate) {
+	// 		fullResume = fullResume + entry + '\n';
+	// 	}
+	// 	let email = {
+	// 	to: this.emailAddress,
+	// 	cc: '',
+	// 	bcc: '',
+	// 	attachments: [
 		
-		],
-		subject: 'Your SkillsIdentifier Resume Template',
-		body: fullResume,
-		isHtml: true
-		};
+	// 	],
+	// 	subject: 'Your SkillsIdentifier Resume Template',
+	// 	body: fullResume,
+	// 	isHtml: true
+	// 	};
 
-		// this.emailComposer.isAvailable().then((available: boolean) =>{
-		// 	if(available) {
-		// 	//Now we know we can send
-		// 	}
-		// });
+	// 	// this.emailComposer.isAvailable().then((available: boolean) =>{
+	// 	// 	if(available) {
+	// 	// 	//Now we know we can send
+	// 	// 	}
+	// 	// });
 
-		console.log(this.emailAddress)
-		console.log(fullResume)
-	}
+	// 	console.log(this.emailAddress)
+	// 	console.log(fullResume)
+	// }
 
 	// sets up the pdf resume
 	// downloadPdf(){
