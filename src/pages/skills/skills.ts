@@ -33,12 +33,12 @@ export class SkillsPage {
 	abilitiesRequired: skillInformation[] = [];
 	knowledgeRequired: skillInformation[] = [];
 
-	skillsPossessed: any = [[], [], [], [], [], []];
+	skillsPossessed: any = [[], [], [], []];
 	
 	skillsSelected: skillInformation[] = [];
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
-	resumeTemplate: string[] = [];
+	resumeTemplate: any = [];
 	resumeIntro: string = "<Enter your full name here>\n<Enter your phone number here>\n<Enter your email here>"
 
 	emailForm: FormGroup;
@@ -177,12 +177,12 @@ export class SkillsPage {
 		let index = idx;
 		let job = this.currentJob[index];
 		if (this.skillsPossessed[index] != []) {
-			this.resumeTemplate[index] = job.title + "\n"
+			this.resumeTemplate[index] = { value: job.title + "\n" };
 			for (let skill of this.skillsPossessed[index]) {
-				this.resumeTemplate[index] = this.resumeTemplate[index] + '- ' + skill.skill_name + "\n";
+				this.resumeTemplate[index].value = this.resumeTemplate[index].value + '- ' + skill.skill_name + "\n";
 			}
 		}
-		console.log(this.resumeTemplate[index])
+		console.log(this.resumeTemplate[index].value)
 
 	}
 
@@ -196,7 +196,7 @@ export class SkillsPage {
 
 	    let fullResume = this.resumeIntro + "\n\n";
 	    for (let entry of this.resumeTemplate) {
-	    	fullResume = fullResume + entry + "\n";
+	    	fullResume = fullResume + entry.value + "\n";
 	    }
 	    selBox.value = fullResume;
 	    document.body.appendChild(selBox);
