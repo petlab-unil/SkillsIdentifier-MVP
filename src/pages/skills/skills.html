@@ -22,15 +22,23 @@
 		</div> -->
 
 		<div col-8 class="resume">
-<<<<<<< HEAD
-
-=======
+<!-- <<<<<<< HEAD -->
+			<div class="resume-textarea">
+				<h5>Please provide your personal information here: </h5>
+				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
+			</div>
+			<div class="resume-textarea">
+				<h5>Please review the information provided and edit the resume content as needed:</h5>
+				<div *ngFor="let entry of resumeTemplate; let idx=index">
+					<ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>
+				</div>
+<!-- =======
 			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
 			<div *ngFor="let entry of resumeTemplate; let idx = index">
 				<ion-textarea
 				[(ngModel)]="resumeTemplate[idx].value"
 				></ion-textarea>
->>>>>>> 35b1631497d8eba7037df27f72238d5fa942bd37
+>>>>>>> 35b1631497d8eba7037df27f72238d5fa942bd37 -->
 			</div>
 		</div>
 
