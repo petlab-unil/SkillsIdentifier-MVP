@@ -25674,6 +25674,13 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.alert-wrapper {
+  font-family: "Avenir";
+  border-radius: 4px !important;
+  min-width: 320px !important;
+  min-height: 120px !important;
+}
+
 footbar ion-toolbar {
   min-height: 50px !important;
 }
@@ -25782,7 +25789,15 @@ page-home .fullpage-input .submit {
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #21d4fd;
-  background-image: linear-gradient(200deg, #21d4fd 0%, #b721ff 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0ba360), to(#3cba92));
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+
+page-home .fullpage-input button.activated {
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  top: 4px;
+  opacity: 0.5 !important;
 }
 
 page-skills {
@@ -25793,6 +25808,10 @@ page-skills {
   font-family: "Avenir";
 }
 
+page-skills ion-navbar, page-skills .toolbar {
+  height: 100px !important;
+}
+
 page-skills ion-navbar .toolbar-background, page-skills .toolbar .toolbar-background {
   background-color: #f4f4f4;
   border: none !important;
@@ -25800,7 +25819,7 @@ page-skills ion-navbar .toolbar-background, page-skills .toolbar .toolbar-backgr
 
 page-skills ion-navbar ion-title, page-skills .toolbar ion-title {
   padding-left: 0 !important;
-  padding-top: 30px !important;
+  padding-top: 10px !important;
 }
 
 page-skills ion-navbar ion-title .toolbar-title, page-skills .toolbar ion-title .toolbar-title {
@@ -25815,6 +25834,17 @@ page-skills ion-navbar p, page-skills .toolbar p {
   padding: 0 20px;
   font-size: 14px;
   margin-top: 0;
+}
+
+page-skills .resume-textarea {
+  margin-top: 10px !important;
+  margin-bottom: 30px !important;
+}
+
+page-skills .resume-textarea h5 {
+  font-weight: 600;
+  font-size: 16px;
+  color: #404040;
 }
 
 page-skills ion-list {
@@ -25833,15 +25863,6 @@ page-skills ion-row {
   margin: auto !important;
 }
 
-page-skills ion-card {
-  padding: 15px;
-}
-
-page-skills ion-card h2 {
-  font-weight: 800 !important;
-  text-transform: capitalize;
-}
-
 @media screen and (min-width: 992px) {
   page-skills ion-row {
     max-width: 1200px !important;
@@ -25854,104 +25875,8 @@ page-skills .resume .text-input {
   padding: 20px;
 }
 
-page-skills .selection-bar {
-  border-top: rgba(0, 0, 0, 0.3) 0.55px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  margin: auto;
-  height: 100px !important;
-  padding: 0 20px;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  background-color: #fff;
-  position: fixed;
-}
-
-page-skills .selection-bar .skills-bar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: calc(100%-200px) p;
-  width-margin: 2px 0;
-  width-padding: 0px !important;
-  width-font-weight: 500;
-  width-font-size: 12px;
-  width-color: #202020;
-}
-
-page-skills .selection-bar .skills-bar .selected-skills {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-page-skills .selection-bar .skills-bar .selected-skills ion-chip {
-  margin-right: 5px;
-}
-
-page-skills .selection-bar .skills-bar .selected-skills ion-chip ion-label {
-  font-weight: 600;
-}
-
-@media screen and (max-width: 420px) {
-  page-skills .selection-bar .skills-bar .selected-skills {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-  page-skills .selection-bar .skills-bar .selected-skills ion-chip > ion-label {
-    font-size: 11px;
-  }
-}
-
-page-skills .selection-bar button {
-  height: 50px;
-  width: 200px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 2px;
-  -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #21d4fd;
-  background-image: linear-gradient(200deg, #21d4fd 0%, #b721ff 100%);
-}
-
-@media screen and (max-width: 420px) {
-  page-skills .selection-bar button {
-    -webkit-box-flex: 0 !important;
-    -webkit-flex: 0 0 100px !important;
-    -ms-flex: 0 0 100px !important;
-    flex: 0 0 100px !important;
-    white-space: normal;
-    line-height: 18px;
-    font-size: 12px;
-  }
-}
-
-page-skills .selection-bar button.activated {
-  background-color: #404040 !important;
-}
-
-page-skills .email {
-  background-color: #f4f4f4;
+page-skills .control {
+  background-color: transparent;
   margin-top: 16px;
   padding: 20px;
   display: -webkit-box;
@@ -25960,20 +25885,7 @@ page-skills .email {
   display: flex;
 }
 
-page-skills .email form {
-  width: 100%;
-}
-
-page-skills .email ion-input {
-  font-size: 14px;
-  margin: 0 !important;
-  color: #333333;
-  font-weight: 500;
-  background-color: transparent !important;
-  border-bottom: solid 1px #ccc;
-}
-
-page-skills .email ion-label {
+page-skills .control ion-label {
   font-weight: 600;
   color: #4a4a4a;
   font-size: 14px !important;
@@ -25981,12 +25893,12 @@ page-skills .email ion-label {
   width: 100%;
 }
 
-page-skills .email ion-icon {
+page-skills .control ion-icon {
   font-size: 22px;
   font-weight: 800;
 }
 
-page-skills .email button {
+page-skills .control button {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -25999,11 +25911,20 @@ page-skills .email button {
   -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #21d4fd;
-  background-image: linear-gradient(200deg, #21d4fd 0%, #b721ff 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0ba360), to(#3cba92));
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  color: white;
+}
+
+page-skills .control button.activated {
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  top: 4px;
+  opacity: 0.5 !important;
 }
 
 @media screen and (max-width: 420px) {
-  page-skills .email button {
+  page-skills .control button {
     -webkit-box-flex: 0 !important;
     -webkit-flex: 0 0 100px !important;
     -ms-flex: 0 0 100px !important;
@@ -26014,6 +25935,6 @@ page-skills .email button {
   }
 }
 
-page-skills .email button.activated {
+page-skills .control button.activated {
   background-color: #404040 !important;
 }
