@@ -34,6 +34,7 @@ export class SkillsPage {
 	skillsSelected: skillInformation[] = [];
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
+  // resume lines need to be stored as objects; there are issues with strings being a primitive.
 	resumeTemplate: any = [];
 	resumeIntro: string = "<Enter your full name here>\n<Enter your phone number here>\n<Enter your email here>"
 
