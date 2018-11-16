@@ -7,19 +7,19 @@
 		      	<div class ="input">
 		     		<ion-item class="input-block">
 		        		<ion-label stacked>Please list up to four previous jobs:</ion-label>
-		        		<ion-input type="text" 
-		        				   [(ngModel)]="currentJob[0].title" 
-		        				   formControlName="currentJobTitleZero" 
+		        		<ion-input type="text"
+		        				   [(ngModel)]="currentJob[0].title"
+		        				   formControlName="currentJobTitleZero"
 		        				   clearInput="on"
-		        				   [class.error1]="!infoForm.controls.currentJobTitleZero.valid && infoForm.controls.currentJobTitleZero.dirty" 
+		        				   [class.error1]="!infoForm.controls.currentJobTitleZero.valid && infoForm.controls.currentJobTitleZero.dirty"
 		        				   (keydown)='onInputCurrentJob($event, 0)'
 		        				   (ionChange)='onClear(0)'
-		        				   (ionFocus)='onFocus(0)'>		        				   
+		        				   (ionFocus)='onFocus(0)'>
 		        		</ion-input>
 		      		</ion-item>
 	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 0">
-						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" 
-								  (click)="onSelectJobTitle(job, 0)" 
+						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"
+								  (click)="onSelectJobTitle(job, 0)"
 								  (mouseover)="onHoverJobTitle(idx)"
 								  no-lines
 								  [class.selected]='idx===currentSelected'>
@@ -36,19 +36,19 @@
 
 				<div class ="input">
 		     		<ion-item class="input-block">
-		        		<ion-input type="text" 
-		        				   [(ngModel)]="currentJob[1].title" 
-		        				   formControlName="currentJobTitleOne" 
+		        		<ion-input type="text"
+		        				   [(ngModel)]="currentJob[1].title"
+		        				   formControlName="currentJobTitleOne"
 		        				   clearInput="on"
-		        				   [class.error1]="!infoForm.controls.currentJobTitleOne.valid && infoForm.controls.currentJobTitleOne.dirty" 
+		        				   [class.error1]="!infoForm.controls.currentJobTitleOne.valid && infoForm.controls.currentJobTitleOne.dirty"
 		        				   (keydown)='onInputCurrentJob($event, 1)'
 		        				   (ionChange)='onClear(1)'
-		        				   (ionFocus)='onFocus(1)'>		        				   
+		        				   (ionFocus)='onFocus(1)'>
 		        		</ion-input>
 		      		</ion-item>
 	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 1">
-						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" 
-								  (click)="onSelectJobTitle(job, 1)" 
+						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"
+								  (click)="onSelectJobTitle(job, 1)"
 								  (mouseover)="onHoverJobTitle(idx)"
 								  no-lines
 								  [class.selected]='idx===currentSelected'>
@@ -65,19 +65,19 @@
 
 		      	<div class ="input">
 		     		<ion-item class="input-block">
-		        		<ion-input type="text" 
-		        				   [(ngModel)]="currentJob[2].title" 
-		        				   formControlName="currentJobTitleTwo" 
+		        		<ion-input type="text"
+		        				   [(ngModel)]="currentJob[2].title"
+		        				   formControlName="currentJobTitleTwo"
 		        				   clearInput="on"
-		        				   [class.error1]="!infoForm.controls.currentJobTitleTwo.valid && infoForm.controls.currentJobTitleTwo.dirty" 
+		        				   [class.error1]="!infoForm.controls.currentJobTitleTwo.valid && infoForm.controls.currentJobTitleTwo.dirty"
 		        				   (keydown)='onInputCurrentJob($event, 2)'
 		        				   (ionChange)='onClear(2)'
-		        				   (ionFocus)='onFocus(2)'>		        				   
+		        				   (ionFocus)='onFocus(2)'>
 		        		</ion-input>
 		      		</ion-item>
 	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 2">
-						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" 
-								  (click)="onSelectJobTitle(job, 2)" 
+						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"
+								  (click)="onSelectJobTitle(job, 2)"
 								  (mouseover)="onHoverJobTitle(idx)"
 								  no-lines
 								  [class.selected]='idx===currentSelected'>
@@ -91,22 +91,22 @@
 			        	</p>
 			       	</div>
 		      	</div>
-		      	
+
 		      	<div class ="input">
 		     		<ion-item class="input-block">
-		        		<ion-input type="text" 
-		        				   [(ngModel)]="currentJob[3].title" 
-		        				   formControlName="currentJobTitleThree" 
+		        		<ion-input type="text"
+		        				   [(ngModel)]="currentJob[3].title"
+		        				   formControlName="currentJobTitleThree"
 		        				   clearInput="on"
-		        				   [class.error1]="!infoForm.controls.currentJobTitleThree.valid && infoForm.controls.currentJobTitleThree.dirty" 
+		        				   [class.error1]="!infoForm.controls.currentJobTitleThree.valid && infoForm.controls.currentJobTitleThree.dirty"
 		        				   (keydown)='onInputCurrentJob($event, 3)'
 		        				   (ionChange)='onClear(3)'
-		        				   (ionFocus)='onFocus(3)'>		        				   
+		        				   (ionFocus)='onFocus(3)'>
 		        		</ion-input>
 		      		</ion-item>
 	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 3">
-						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" 
-								  (click)="onSelectJobTitle(job, 3)" 
+						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"
+								  (click)="onSelectJobTitle(job, 3)"
 								  (mouseover)="onHoverJobTitle(idx)"
 								  no-lines
 								  [class.selected]='idx===currentSelected'>
@@ -124,20 +124,20 @@
 				<div class="input">
 			      	<ion-item class="input-block">
 			        	<ion-label stacked>What job would you like to apply for?</ion-label>
-			        	<ion-input type="text" 
-			        			   [(ngModel)]="dreamJob.title" 
+			        	<ion-input type="text"
+			        			   [(ngModel)]="dreamJob.title"
 			        			   formControlName="dreamJobTitle"
 								   clearInput="on"
 			        			   [class.error1]="!infoForm.controls.dreamJobTitle.valid && infoForm.controls.dreamJobTitle.dirty"
 			        			   (keydown)='onInputDreamJob($event)'
 			        			   (ionChange)='onClear(6)'
 			        			   (ionFocus)='onFocus(6)'>
-			        			   
+
 			        	</ion-input>
 			      	</ion-item>
 	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 6">
-						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" 
-								  (click)="onSelectJobTitle(job, 6)" 
+						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"
+								  (click)="onSelectJobTitle(job, 6)"
 								  (mouseover)="onHoverJobTitle(idx)"
 								  no-lines
 								  [class.selected]='idx===currentSelected'>
@@ -153,11 +153,11 @@
 			 	</div>
 
 
-		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].uuid == '' || dreamJob.uuid =='' ">CONTINUE</button>
-		    
+		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].uuid == '' || dreamJob.uuid =='' " (click)="logData()">CONTINUE</button>
+
 		    </form>
 
-		</ion-list>		
+		</ion-list>
 	</div>
 
 </ion-content>

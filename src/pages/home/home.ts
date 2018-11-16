@@ -5,7 +5,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobDataProvider } from '../../providers/job-data/job-data';
 import { jobInformation} from '../../assets/data/dataModel';
 import { SkillsPage } from '../skills/skills';
-// import { ModalHomePage } from '../modal-home/modal-home'; 
+import firebase from 'firebase';
+
+const firebaseConfig = {
+	apiKey: "AIzaSyAxfa8y78nO9x_mIPkxJpLtzSa7RGt99_o",
+	authDomain: "skillsidentifier.firebaseapp.com",
+	databaseURL: "https://skillsidentifier.firebaseio.com",
+	projectId: "skillsidentifier",
+	storageBucket: "skillsidentifier.appspot.com",
+	messagingSenderId: "93690322104"
+}
+// import { ModalHomePage } from '../modal-home/modal-home';
 
 // import { FootbarComponent } from '../../components/footbar/footbar';
 
@@ -20,6 +30,7 @@ import { SkillsPage } from '../skills/skills';
 
 export class HomePage {
 
+	private db: any;
 	currentJob = [ {'title': '', 'uuid': '', 'parent_uuid': ''},  {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''} ];
 	dreamJob = {'title': '', 'uuid': '', 'parent_uuid': ''};
 
@@ -27,16 +38,17 @@ export class HomePage {
 
 	jobAutocompleteList : any[] = [];
 	showJobAutocompleteList = -1;
-	
 
-	// currentSelected is used to store the index of the current selected item in the autocomplete list 
+
+	// currentSelected is used to store the index of the current selected item in the autocomplete list
 
 	currentSelected: number = 0;
 
 	constructor(public navCtrl: NavController,
 				public modalCtrl: ModalController,
 				private _jobDataProvider: JobDataProvider) {
-
+			 	firebase.initializeApp(firebaseConfig);
+				this.db = firebase.database();
 	}
 
 	ngOnInit(){
@@ -57,7 +69,7 @@ export class HomePage {
 
 	// openModal(){
 	// 	const introModal = this.modalCtrl.create('ModalHomePage')
-	// 	introModal.present();	
+	// 	introModal.present();
 	// }
 
 	pushPage(){
@@ -72,10 +84,10 @@ export class HomePage {
 
 	}
 
-	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion 
+	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
 
 	onInputCurrentJob(event: any, i: number){
-		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter") 
+		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.currentJob[i].title.length > 3)
 				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
 				.subscribe(res => {
@@ -85,7 +97,7 @@ export class HomePage {
 				err => {
 					this.jobAutocompleteList = []
 				})
-			else if (this.currentJob[i].title.length == 0) 
+			else if (this.currentJob[i].title.length == 0)
 				this.jobAutocompleteList = []
 
 		if (event.key == "ArrowDown") {
@@ -100,7 +112,7 @@ export class HomePage {
 	}
 
 	onInputDreamJob(event: any){
-		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter") 
+		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.dreamJob.title.length > 3)
 				this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
 				.subscribe(res => {
@@ -110,7 +122,7 @@ export class HomePage {
 				err => {
 					this.jobAutocompleteList = []
 				})
-			else if (this.dreamJob.title.length == 0) 
+			else if (this.dreamJob.title.length == 0)
 				this.jobAutocompleteList = []
 
 		if (event.key == "ArrowDown" && this.currentSelected < this.jobAutocompleteList.length) {
@@ -130,7 +142,7 @@ export class HomePage {
 			.subscribe(res => {
 				this.jobAutocompleteList = res;
 			})
-		if (event.value.length == 0) 
+		if (event.value.length == 0)
 			this.jobAutocompleteList = []
 	}
 
@@ -138,7 +150,7 @@ export class HomePage {
 		this.currentSelected = index;
 	}
 
-	// Users select the job title from the title list 
+	// Users select the job title from the title list
 
 	onSelectJobTitle(job: any, index: number){
 		this.jobAutocompleteList = [];
@@ -169,10 +181,25 @@ export class HomePage {
 	// Clear the job title list when the text field is cleared by either the clear button or deleted by the user
 
 	onClear(index: number){
-		if (index < 6 && this.currentJob[index].title == '') 
+		if (index < 6 && this.currentJob[index].title == '')
 			this.jobAutocompleteList = []
 		else if (this.dreamJob.title == '' && index == 6)
 			this.jobAutocompleteList = []
+	}
+
+	private logData(){
+			console.log("We are logging the data");
+			let dataRef = this.db.ref('/entries');
+			let jobRef = dataRef.push();
+			let dataRecord = {
+				dream: this.dreamJob.title,
+				pastJob1: this.currentJob[0].title,
+				pastJob2: this.currentJob[1].title,
+				pastJob3: this.currentJob[2].title,
+				pastJob4: this.currentJob[3].title,
+			}
+			jobRef.set(dataRecord)
+			//dataRef.set({currentJobs: this.currentJob[0].title});
 	}
 
 }

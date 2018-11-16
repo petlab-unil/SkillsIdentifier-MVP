@@ -30,7 +30,7 @@ export class SkillsPage {
 	knowledgeRequired: skillInformation[] = [];
 
 	skillsPossessed: any = [[], [], [], []];
-	
+
 	skillsSelected: skillInformation[] = [];
 	skillsSelectedLength: number = 0;
 	skillsNeededLength: number;
@@ -59,10 +59,9 @@ export class SkillsPage {
 	}
 
 	ngOnInit(){
-
 		this.loading.present();
 		if (this.dreamJob.title != '') {
-			
+
 			this.identifyRequiredSkills()
 
 			this.loading.dismiss();
@@ -139,7 +138,7 @@ export class SkillsPage {
 				})
 			}
 		})
-		
+
 	}
 
 	createResumeEntry(idx: number) {
@@ -176,7 +175,7 @@ export class SkillsPage {
 
 	    this.presentAlert();
 
-  	}	
+  	}
 
   	presentAlert() {
 	  let alert = this._alertCtrl.create({
@@ -187,7 +186,7 @@ export class SkillsPage {
 	  console.log("alert")
 	  alert.present();
 	}
-	
+
 	// emails the edited resume to the user
 	// sendEmail() {
 	// 	let fullResume = ''
@@ -199,7 +198,7 @@ export class SkillsPage {
 	// 	cc: '',
 	// 	bcc: '',
 	// 	attachments: [
-		
+
 	// 	],
 	// 	subject: 'Your SkillsIdentifier Resume Template',
 	// 	body: fullResume,
@@ -235,7 +234,7 @@ export class SkillsPage {
 	// 	}
 
 	// 	this.resume.text(lines, 10, 10);
-		
+
 	// 	this.resume.save("resume.pdf");
 
 	// 	// this.resume.output('datauri')

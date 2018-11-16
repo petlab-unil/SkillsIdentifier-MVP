@@ -31,7 +31,7 @@ export class JobDataProvider {
       this.dreamJob = dreamJob;
     }
 
-    // Get job title autocompletion by calling Dataatwork autocomplete API 
+    // Get job title autocompletion by calling Dataatwork autocomplete API
 
     getJobAutocomplete(jobTitle: string){
       return this.http.get(this._dataAtWork_url + "jobs/autocomplete?contains=" + jobTitle)
