@@ -4,7 +4,8 @@
 ## Table of Contents
 1. [Installation Instructions](#installation-instructions)
 2. [Run the App](#run-the-app)
-6. [Author](#author)
+3. [Author](#author)
+4. [Acknowledgement](#acknowledgement)
 
 ## Installation Instructions
 
@@ -15,7 +16,7 @@
 - Install [ionic](https://ionicframework.com/docs/intro/installation/)
 
 #### Firebase
-- Navigate to the project roor directory and install Firebase
+- Navigate to the project root directory and install Firebase
 ````
 $npm install firebase
 ````
@@ -33,3 +34,7 @@ To update the website, you must run `ionic cordova build browser` from the Termi
 
 ## Author
 This project is created and managed by the [Social Innovations Group](http://socialinnovations.us/), School of Information, the University of Michigan.
+
+## Acknowledgement
+
+This project is funded by the [the National Science Foundation](https://www.nsf.gov/).
