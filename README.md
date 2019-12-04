@@ -1,24 +1,40 @@
-README for the SkillsIdentifier Minimum Viable Product
+# SkillsIdentifier
+[SkillsIdentifier](http://socialinnovations.us/SkillsIdentifier-MVP/) is a system dedicated to help job seekers identify and communicate current skill set in order to improve resumes accordingly. This system could increase job seekers' self-efficacy by improving users’ ability to articulate their skills.
 
-## Installation & Use
-### Dependencies:
-* npm (node package manager)
-* ionic web framework
-* firebase
+## Table of Contents
+1. [Installation Instructions](#installation-instructions)
+2. [Run the App](#run-the-app)
+3. [Author](#author)
+4. [Acknowledgement](#acknowledgement)
 
-To install npm, visit https://www.npmjs.com/get-npm
+## Installation Instructions
 
-To install ionic, visit https://ionicframework.com/docs/intro/installation/ and follow the instructions.
+#### NodeJS
+- Install [nodeJS](https://nodejs.org/download/)
 
-To install firebase navigate to the project root directory in the terminal and run command `npm install firebase`.
+#### Ionic Framework
+- Install [ionic](https://ionicframework.com/docs/intro/installation/)
 
-### Running the App
-To run the app from your local system, navigate to the root directory of the project in terminal,
-and run the command `ionic serve`. Your default browser will load an instance of the project.
+#### Firebase
+- Navigate to the project root directory and install Firebase
+````
+$npm install firebase
+````
 
-## Web Hosting
-The app is currently hosted at http://socialinnovations.us/SkillsIdentifier-MVP/.
+## Run the App
 
-Because of the way ionic structures files, we use a script (`/hooks/after_prepare/010_copy_browser_to_docs.js`)
+- Navigate to the project root directory and start a server in your browser
+````
+$ionic serve
+````
+
+Note that because of the way ionic structures files, we use a script (`/hooks/after_prepare/010_copy_browser_to_docs.js`)
 to create a 'normal-looking' web app in `/docs`.
 To update the website, you must run `ionic cordova build browser` from the Terminal.
+
+## Author
+This project is created and managed by the [Social Innovations Group](http://socialinnovations.us/), School of Information, the University of Michigan.
+
+## Acknowledgement
+
+This project is funded by the [the National Science Foundation](https://www.nsf.gov/).
