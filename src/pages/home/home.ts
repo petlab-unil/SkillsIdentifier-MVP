@@ -52,7 +52,7 @@ export class HomePage {
 	}
 
 	ngOnInit(){
-
+        console.log("Trying to set the form values!")
 		this.infoForm = new FormGroup({
 			currentJobTitleZero: new FormControl('', [Validators.required]),
 			currentJobTitleOne: new FormControl('', [Validators.required]),
@@ -77,6 +77,8 @@ export class HomePage {
 		// this._jobDataProvider.location = this.location;
 
 		// TODO: fix this logic
+        console.log("Trying to push data!")
+
 		this._jobDataProvider.setCurrentJob(this.currentJob);
 		this._jobDataProvider.setDreamJob(this.dreamJob);
 
@@ -88,6 +90,8 @@ export class HomePage {
 	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
 
 	onInputCurrentJob(event: any, i: number){
+        console.log("Trying to update the fields")
+
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.currentJob[i].title.length > 3)
 				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
@@ -138,6 +142,7 @@ export class HomePage {
 	}
 
 	onChangeJobTitle(event: any){
+        console.log("Trying to update the dream job")
 		if (event.value.length > 3)
 			this._jobDataProvider.getJobAutocomplete(event.value)
 			.subscribe(res => {
