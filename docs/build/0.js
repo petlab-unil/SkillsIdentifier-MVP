@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 282:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SkillsPageModule", function() { return SkillsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__skills__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__skills__ = __webpack_require__(301);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ var SkillsPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 283:
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SkillsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_job_data_job_data__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_job_data_job_data__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -205,7 +205,7 @@ var SkillsPage = /** @class */ (function () {
     };
     SkillsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-skills',template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/'<ion-header>\n	<ion-navbar hideBackButton>\n		<ion-title>\n		    Your New Resume Template! Review the information provided and edit the content as needed\n		</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n	<ion-row>\n		<!-- <div col-6>\n			<div *ngFor="let job of currentJob; let idx=index">\n				<h2>{{ job.title }}</h2>\n				<ul>\n					<li *ngFor = "let skill of skillsPossessed[idx]">\n				  <h2>{{ skill.skill_name }}</h2>\n				  <p>{{ skill.description }}</p>\n					</li>\n				</ul>\n			</div>\n		</div> -->\n\n		<div col-8 class="resume">\n<!-- <<<<<<< HEAD -->\n			<div class="resume-textarea">\n				<h5>Please provide your personal information here: </h5>\n				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>\n			</div>\n			<div class="resume-textarea">\n				<h5>Please review the information provided and edit the resume content as needed:</h5>\n				<div *ngFor="let entry of resumeTemplate; let idx=index">\n					<ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>\n				</div>\n<!-- =======\n			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>\n			<div *ngFor="let entry of resumeTemplate; let idx = index">\n				<ion-textarea\n				[(ngModel)]="resumeTemplate[idx].value"\n				></ion-textarea>\n>>>>>>> 35b1631497d8eba7037df27f72238d5fa942bd37 -->\n			</div>\n		</div>\n\n		<div col-4 class="control">\n			<button ion-button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>\n	        <!-- <form #emailForm="ngForm">\n\n	        	<ion-label stacked>Please provide your email address:</ion-label>\n		        <ion-input class="input"\n		        		   type="email" \n						   [(ngModel)]="emailAddress"\n						   name="email"\n						   clearInput="on">		        				   \n				</ion-input>\n\n					\n\n			</form>	 -->	\n\n		</div>\n\n	</ion-row>\n</ion-content>'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/skills/skills.html"*/
+            selector: 'page-skills',template:/*ion-inline-start:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/pages/skills/skills.html"*/'<ion-header>\n	<ion-navbar hideBackButton>\n		<ion-title>\n		    Your New Resume Template! Review the information provided and edit the content as needed\n		</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n	<ion-row>\n		<!-- <div col-6>\n			<div *ngFor="let job of currentJob; let idx=index">\n				<h2>{{ job.title }}</h2>\n				<ul>\n					<li *ngFor = "let skill of skillsPossessed[idx]">\n				  <h2>{{ skill.skill_name }}</h2>\n				  <p>{{ skill.description }}</p>\n					</li>\n				</ul>\n			</div>\n		</div> -->\n\n		<div col-8 class="resume">\n<!-- <<<<<<< HEAD -->\n			<div class="resume-textarea">\n				<h5>Please provide your personal information here: </h5>\n				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>\n			</div>\n			<div class="resume-textarea">\n				<h5>Please review the information provided and edit the resume content as needed:</h5>\n				<div *ngFor="let entry of resumeTemplate; let idx=index">\n					<ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>\n				</div>\n<!-- =======\n			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>\n			<div *ngFor="let entry of resumeTemplate; let idx = index">\n				<ion-textarea\n				[(ngModel)]="resumeTemplate[idx].value"\n				></ion-textarea>\n>>>>>>> 35b1631497d8eba7037df27f72238d5fa942bd37 -->\n			</div>\n		</div>\n\n		<div col-4 class="control">\n			<button ion-button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>\n	        <!-- <form #emailForm="ngForm">\n\n	        	<ion-label stacked>Please provide your email address:</ion-label>\n		        <ion-input class="input"\n		        		   type="email" \n						   [(ngModel)]="emailAddress"\n						   name="email"\n						   clearInput="on">		        				   \n				</ion-input>\n\n					\n\n			</form>	 -->	\n\n		</div>\n\n	</ion-row>\n</ion-content>'/*ion-inline-end:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/pages/skills/skills.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],

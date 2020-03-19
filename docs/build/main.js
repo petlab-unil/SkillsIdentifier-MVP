@@ -1,15 +1,15 @@
 webpackJsonp([1],{
 
-/***/ 100:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobDataProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,7 +41,7 @@ var JobDataProvider = /** @class */ (function () {
     JobDataProvider.prototype.setDreamJob = function (dreamJob) {
         this.dreamJob = dreamJob;
     };
-    // Get job title autocompletion by calling Dataatwork autocomplete API 
+    // Get job title autocompletion by calling Dataatwork autocomplete API
     JobDataProvider.prototype.getJobAutocomplete = function (jobTitle) {
         return this.http.get(this._dataAtWork_url + "jobs/autocomplete?contains=" + jobTitle)
             .map(function (res) { return res; });
@@ -61,7 +61,7 @@ var JobDataProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 112:
+/***/ 117:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -74,19 +74,19 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 112;
+webpackEmptyAsyncContext.id = 117;
 
 /***/ }),
 
-/***/ 154:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/home/home.module": [
-		155
+		160
 	],
 	"../pages/skills/skills.module": [
-		282,
+		300,
 		0
 	]
 };
@@ -101,21 +101,21 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 154;
+webpackAsyncContext.id = 159;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 155:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(273);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -147,15 +147,17 @@ var HomePageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 156:
+/***/ 161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_job_data_job_data__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_job_data_job_data__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,7 +171,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { ModalHomePage } from '../modal-home/modal-home'; 
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAxfa8y78nO9x_mIPkxJpLtzSa7RGt99_o",
+    authDomain: "skillsidentifier.firebaseapp.com",
+    databaseURL: "https://skillsidentifier.firebaseio.com",
+    projectId: "skillsidentifier",
+    storageBucket: "skillsidentifier.appspot.com",
+    messagingSenderId: "93690322104"
+};
+// import { ModalHomePage } from '../modal-home/modal-home';
 // import { FootbarComponent } from '../../components/footbar/footbar';
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, modalCtrl, _jobDataProvider) {
@@ -180,10 +191,13 @@ var HomePage = /** @class */ (function () {
         this.dreamJob = { 'title': '', 'uuid': '', 'parent_uuid': '' };
         this.jobAutocompleteList = [];
         this.showJobAutocompleteList = -1;
-        // currentSelected is used to store the index of the current selected item in the autocomplete list 
+        // currentSelected is used to store the index of the current selected item in the autocomplete list
         this.currentSelected = 0;
+        __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.initializeApp(firebaseConfig);
+        this.db = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database();
     }
     HomePage.prototype.ngOnInit = function () {
+        console.log("Trying to set the form values!");
         this.infoForm = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
             currentJobTitleZero: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]),
             currentJobTitleOne: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]),
@@ -197,18 +211,21 @@ var HomePage = /** @class */ (function () {
     };
     // openModal(){
     // 	const introModal = this.modalCtrl.create('ModalHomePage')
-    // 	introModal.present();	
+    // 	introModal.present();
     // }
     HomePage.prototype.pushPage = function () {
         // this._jobDataProvider.location = this.location;
         // TODO: fix this logic
+        console.log("Trying to push data!");
         this._jobDataProvider.setCurrentJob(this.currentJob);
         this._jobDataProvider.setDreamJob(this.dreamJob);
         this.navCtrl.push("skills");
+        console.log("Pushed Data!");
     };
-    // controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion 
+    // controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
     HomePage.prototype.onInputCurrentJob = function (event, i) {
         var _this = this;
+        console.log("Trying to update the fields");
         if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
             if (this.currentJob[i].title.length > 3)
                 this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
@@ -255,6 +272,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.onChangeJobTitle = function (event) {
         var _this = this;
+        console.log("Trying to update the dream job");
         if (event.value.length > 3)
             this._jobDataProvider.getJobAutocomplete(event.value)
                 .subscribe(function (res) {
@@ -266,7 +284,7 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.onHoverJobTitle = function (index) {
         this.currentSelected = index;
     };
-    // Users select the job title from the title list 
+    // Users select the job title from the title list
     HomePage.prototype.onSelectJobTitle = function (job, index) {
         this.jobAutocompleteList = [];
         if (index <= 5) {
@@ -296,9 +314,23 @@ var HomePage = /** @class */ (function () {
         else if (this.dreamJob.title == '' && index == 6)
             this.jobAutocompleteList = [];
     };
+    HomePage.prototype.logData = function () {
+        console.log("We are logging the data");
+        var dataRef = this.db.ref('/entries');
+        var jobRef = dataRef.push();
+        var dataRecord = {
+            dream: this.dreamJob.title,
+            pastJob1: this.currentJob[0].title,
+            pastJob2: this.currentJob[1].title,
+            pastJob3: this.currentJob[2].title,
+            pastJob4: this.currentJob[3].title,
+        };
+        jobRef.set(dataRecord);
+        //dataRef.set({currentJobs: this.currentJob[0].title});
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/home/home.html"*/'<ion-content padding>\n	<div class="fullpage-input">\n\n		<ion-list>\n		    <form novalidate (ngSubmit)="pushPage()" [formGroup]="infoForm">\n\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-label stacked>Please list up to four previous jobs:</ion-label>\n		        		<ion-input type="text" \n		        				   [(ngModel)]="currentJob[0].title" \n		        				   formControlName="currentJobTitleZero" \n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleZero.valid && infoForm.controls.currentJobTitleZero.dirty" \n		        				   (keydown)=\'onInputCurrentJob($event, 0)\'\n		        				   (ionChange)=\'onClear(0)\'\n		        				   (ionFocus)=\'onFocus(0)\'>		        				   \n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 0">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" \n								  (click)="onSelectJobTitle(job, 0)" \n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleZero\').touched && currentJob[0].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n				<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text" \n		        				   [(ngModel)]="currentJob[1].title" \n		        				   formControlName="currentJobTitleOne" \n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleOne.valid && infoForm.controls.currentJobTitleOne.dirty" \n		        				   (keydown)=\'onInputCurrentJob($event, 1)\'\n		        				   (ionChange)=\'onClear(1)\'\n		        				   (ionFocus)=\'onFocus(1)\'>		        				   \n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 1">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" \n								  (click)="onSelectJobTitle(job, 1)" \n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleOne\').touched && currentJob[1].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text" \n		        				   [(ngModel)]="currentJob[2].title" \n		        				   formControlName="currentJobTitleTwo" \n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleTwo.valid && infoForm.controls.currentJobTitleTwo.dirty" \n		        				   (keydown)=\'onInputCurrentJob($event, 2)\'\n		        				   (ionChange)=\'onClear(2)\'\n		        				   (ionFocus)=\'onFocus(2)\'>		        				   \n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 2">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" \n								  (click)="onSelectJobTitle(job, 2)" \n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleTwo\').touched && currentJob[2].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n		      	\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text" \n		        				   [(ngModel)]="currentJob[3].title" \n		        				   formControlName="currentJobTitleThree" \n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleThree.valid && infoForm.controls.currentJobTitleThree.dirty" \n		        				   (keydown)=\'onInputCurrentJob($event, 3)\'\n		        				   (ionChange)=\'onClear(3)\'\n		        				   (ionFocus)=\'onFocus(3)\'>		        				   \n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 3">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" \n								  (click)="onSelectJobTitle(job, 3)" \n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleThree\').touched && currentJob[3].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n				<div class="input">\n			      	<ion-item class="input-block">\n			        	<ion-label stacked>What job would you like to apply for?</ion-label>\n			        	<ion-input type="text" \n			        			   [(ngModel)]="dreamJob.title" \n			        			   formControlName="dreamJobTitle"\n								   clearInput="on"\n			        			   [class.error1]="!infoForm.controls.dreamJobTitle.valid && infoForm.controls.dreamJobTitle.dirty"\n			        			   (keydown)=\'onInputDreamJob($event)\'\n			        			   (ionChange)=\'onClear(6)\'\n			        			   (ionFocus)=\'onFocus(6)\'>\n			        			   \n			        	</ion-input>\n			      	</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 6">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index" \n								  (click)="onSelectJobTitle(job, 6)" \n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			          	<p *ngIf="infoForm.get(\'dreamJobTitle\').touched && dreamJob.uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			        </div>\n			 	</div>\n\n\n		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].uuid == \'\' || dreamJob.uuid ==\'\' ">CONTINUE</button>\n		    \n		    </form>\n\n		</ion-list>		\n	</div>\n\n</ion-content>\n\n<!-- <ion-footer no-border>\n	<footbar></footbar>\n</ion-footer> -->'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/pages/home/home.html"*/'<ion-content padding>\n	<div class="fullpage-input">\n\n		<ion-list>\n		    <form novalidate (ngSubmit)="pushPage()" [formGroup]="infoForm">\n\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-label stacked>Please list up to four previous jobs:</ion-label>\n		        		<ion-input type="text"\n		        				   [(ngModel)]="currentJob[0].title"\n		        				   formControlName="currentJobTitleZero"\n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleZero.valid && infoForm.controls.currentJobTitleZero.dirty"\n		        				   (keydown)=\'onInputCurrentJob($event, 0)\'\n		        				   (ionChange)=\'onClear(0)\'\n		        				   (ionFocus)=\'onFocus(0)\'>\n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 0">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"\n								  (click)="onSelectJobTitle(job, 0)"\n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleZero\').touched && currentJob[0].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n				<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text"\n		        				   [(ngModel)]="currentJob[1].title"\n		        				   formControlName="currentJobTitleOne"\n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleOne.valid && infoForm.controls.currentJobTitleOne.dirty"\n		        				   (keydown)=\'onInputCurrentJob($event, 1)\'\n		        				   (ionChange)=\'onClear(1)\'\n		        				   (ionFocus)=\'onFocus(1)\'>\n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 1">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"\n								  (click)="onSelectJobTitle(job, 1)"\n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleOne\').touched && currentJob[1].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text"\n		        				   [(ngModel)]="currentJob[2].title"\n		        				   formControlName="currentJobTitleTwo"\n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleTwo.valid && infoForm.controls.currentJobTitleTwo.dirty"\n		        				   (keydown)=\'onInputCurrentJob($event, 2)\'\n		        				   (ionChange)=\'onClear(2)\'\n		        				   (ionFocus)=\'onFocus(2)\'>\n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 2">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"\n								  (click)="onSelectJobTitle(job, 2)"\n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleTwo\').touched && currentJob[2].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n		      	<div class ="input">\n		     		<ion-item class="input-block">\n		        		<ion-input type="text"\n		        				   [(ngModel)]="currentJob[3].title"\n		        				   formControlName="currentJobTitleThree"\n		        				   clearInput="on"\n		        				   [class.error1]="!infoForm.controls.currentJobTitleThree.valid && infoForm.controls.currentJobTitleThree.dirty"\n		        				   (keydown)=\'onInputCurrentJob($event, 3)\'\n		        				   (ionChange)=\'onClear(3)\'\n		        				   (ionFocus)=\'onFocus(3)\'>\n		        		</ion-input>\n		      		</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 3">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"\n								  (click)="onSelectJobTitle(job, 3)"\n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			        	<p *ngIf="infoForm.get(\'currentJobTitleThree\').touched && currentJob[3].uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			       	</div>\n		      	</div>\n\n				<div class="input">\n			      	<ion-item class="input-block">\n			        	<ion-label stacked>What job would you like to apply for?</ion-label>\n			        	<ion-input type="text"\n			        			   [(ngModel)]="dreamJob.title"\n			        			   formControlName="dreamJobTitle"\n								   clearInput="on"\n			        			   [class.error1]="!infoForm.controls.dreamJobTitle.valid && infoForm.controls.dreamJobTitle.dirty"\n			        			   (keydown)=\'onInputDreamJob($event)\'\n			        			   (ionChange)=\'onClear(6)\'\n			        			   (ionFocus)=\'onFocus(6)\'>\n\n			        	</ion-input>\n			      	</ion-item>\n	      			<ion-list class="autocomplete-list" *ngIf="showJobAutocompleteList == 6">\n						<ion-item *ngFor="let job of jobAutocompleteList; let idx = index"\n								  (click)="onSelectJobTitle(job, 6)"\n								  (mouseover)="onHoverJobTitle(idx)"\n								  no-lines\n								  [class.selected]=\'idx===currentSelected\'>\n							{{job.suggestion}}\n						</ion-item>\n					</ion-list>\n			      	<div class="error">\n			          	<p *ngIf="infoForm.get(\'dreamJobTitle\').touched && dreamJob.uuid==\'\'">\n			            	<ion-icon name="alert"></ion-icon>\n			            	  Please input a valid recent job\n			        	</p>\n			        </div>\n			 	</div>\n\n\n		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].uuid == \'\' || dreamJob.uuid ==\'\' " (click)="logData()">CONTINUE</button>\n\n		    </form>\n\n		</ion-list>\n	</div>\n\n</ion-content>\n\n<!-- <ion-footer no-border>\n	<footbar></footbar>\n</ion-footer> -->\n'/*ion-inline-end:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */],
@@ -311,13 +343,13 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 200:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(228);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -325,20 +357,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 221:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home_module__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_job_data_job_data__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home_module__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_job_data_job_data__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -368,8 +400,8 @@ var AppModule = /** @class */ (function () {
                     mode: 'ios'
                 }, {
                     links: [
-                        { loadChildren: '../pages/skills/skills.module#SkillsPageModule', name: 'skills', segment: 'skills', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'home', segment: null, priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'home', segment: null, priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/skills/skills.module#SkillsPageModule', name: 'skills', segment: 'skills', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClientModule */],
@@ -394,13 +426,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 255:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__footbar_footbar__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__footbar_footbar__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -426,7 +458,7 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 256:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -449,7 +481,7 @@ var FootbarComponent = /** @class */ (function () {
     }
     FootbarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'footbar',template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/components/footbar/footbar.html"*/'<!-- <ion-footer no-border>\n	<ion-toolbar>\n		<div class="footnote">\n			<a href="http://socialinnovations.us/" target="_blank">Social Innovations Group</a> | © 2018 | version 1.5 | build 2018.08.04\n		</div>\n	</ion-toolbar>\n</ion-footer> -->'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/components/footbar/footbar.html"*/
+            selector: 'footbar',template:/*ion-inline-start:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/components/footbar/footbar.html"*/'<!-- <ion-footer no-border>\n	<ion-toolbar>\n		<div class="footnote">\n			<a href="http://socialinnovations.us/" target="_blank">Social Innovations Group</a> | © 2018 | version 1.5 | build 2018.08.04\n		</div>\n	</ion-toolbar>\n</ion-footer> -->'/*ion-inline-end:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/components/footbar/footbar.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], FootbarComponent);
@@ -460,16 +492,16 @@ var FootbarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -495,7 +527,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/earnestw/Documents/PhD Research/SkillsIdentifier/SkillsIdentifier/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/ruchitalodha/SkillsIdentifier-MVP/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -506,5 +538,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[200]);
+},[207]);
 //# sourceMappingURL=main.js.map
