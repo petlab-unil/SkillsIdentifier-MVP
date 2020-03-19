@@ -189,16 +189,29 @@ export class HomePage {
 
 	private logData(){
 			console.log("We are logging the data");
-			let dataRef = this.db.ref('/entries');
-			let jobRef = dataRef.push();
-			let dataRecord = {
-				dream: this.dreamJob.title,
-				pastJob1: this.currentJob[0].title,
-				pastJob2: this.currentJob[1].title,
-				pastJob3: this.currentJob[2].title,
-				pastJob4: this.currentJob[3].title,
-			}
-			jobRef.set(dataRecord)
+        // Testing basic code
+            var rootRef = this.db.ref();
+            rootRef.set({
+                        like: '5'
+                    }).then(success => {
+                            console.log('success',success);
+                        },
+                        error => {
+                            console.log('error',error);
+                        }
+                    );
+//			let dataRef = this.db.ref('/entries');
+//			let jobRef = dataRef.push();
+//			let dataRecord = {
+//				dream: this.dreamJob.title,
+//				pastJob1: this.currentJob[0].title,
+//				pastJob2: this.currentJob[1].title,
+//				pastJob3: this.currentJob[2].title,
+//				pastJob4: this.currentJob[3].title,
+//			}
+//			jobRef.set(dataRecord);
+        
+        
 			//dataRef.set({currentJobs: this.currentJob[0].title});
 	}
 
