@@ -197,7 +197,6 @@ var HomePage = /** @class */ (function () {
         this.db = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database();
     }
     HomePage.prototype.ngOnInit = function () {
-        console.log("Trying to set the form values!");
         this.infoForm = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
             currentJobTitleZero: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]),
             currentJobTitleOne: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required]),
@@ -216,16 +215,13 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.pushPage = function () {
         // this._jobDataProvider.location = this.location;
         // TODO: fix this logic
-        console.log("Trying to push data!");
         this._jobDataProvider.setCurrentJob(this.currentJob);
         this._jobDataProvider.setDreamJob(this.dreamJob);
         this.navCtrl.push("skills");
-        console.log("Pushed Data!");
     };
     // controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
     HomePage.prototype.onInputCurrentJob = function (event, i) {
         var _this = this;
-        console.log("Trying to update the fields");
         if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
             if (this.currentJob[i].title.length > 3)
                 this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
@@ -272,7 +268,6 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.onChangeJobTitle = function (event) {
         var _this = this;
-        console.log("Trying to update the dream job");
         if (event.value.length > 3)
             this._jobDataProvider.getJobAutocomplete(event.value)
                 .subscribe(function (res) {
@@ -315,15 +310,16 @@ var HomePage = /** @class */ (function () {
             this.jobAutocompleteList = [];
     };
     HomePage.prototype.logData = function () {
-        console.log("We are logging the data");
         var dataRef = this.db.ref('/entries');
         var jobRef = dataRef.push();
+        var date = new Date();
         var dataRecord = {
             dream: this.dreamJob.title,
             pastJob1: this.currentJob[0].title,
             pastJob2: this.currentJob[1].title,
             pastJob3: this.currentJob[2].title,
             pastJob4: this.currentJob[3].title,
+            timestamp: date.toLocaleString(),
         };
         jobRef.set(dataRecord);
         //dataRef.set({currentJobs: this.currentJob[0].title});
@@ -400,8 +396,8 @@ var AppModule = /** @class */ (function () {
                     mode: 'ios'
                 }, {
                     links: [
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'home', segment: null, priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/skills/skills.module#SkillsPageModule', name: 'skills', segment: 'skills', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/skills/skills.module#SkillsPageModule', name: 'skills', segment: 'skills', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'home', segment: null, priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClientModule */],

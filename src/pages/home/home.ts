@@ -52,7 +52,6 @@ export class HomePage {
 	}
 
 	ngOnInit(){
-        console.log("Trying to set the form values!")
 		this.infoForm = new FormGroup({
 			currentJobTitleZero: new FormControl('', [Validators.required]),
 			currentJobTitleOne: new FormControl('', [Validators.required]),
@@ -77,20 +76,17 @@ export class HomePage {
 		// this._jobDataProvider.location = this.location;
 
 		// TODO: fix this logic
-        console.log("Trying to push data!")
 
 		this._jobDataProvider.setCurrentJob(this.currentJob);
 		this._jobDataProvider.setDreamJob(this.dreamJob);
 
 		this.navCtrl.push("skills")
-        console.log("Pushed Data!")
 
 	}
 
 	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
 
 	onInputCurrentJob(event: any, i: number){
-        console.log("Trying to update the fields")
 
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.currentJob[i].title.length > 3)
@@ -142,7 +138,6 @@ export class HomePage {
 	}
 
 	onChangeJobTitle(event: any){
-        console.log("Trying to update the dream job")
 		if (event.value.length > 3)
 			this._jobDataProvider.getJobAutocomplete(event.value)
 			.subscribe(res => {
@@ -194,15 +189,17 @@ export class HomePage {
 	}
 
 	private logData(){
-			console.log("We are logging the data");
 			let dataRef = this.db.ref('/entries');
 			let jobRef = dataRef.push();
+            let date = new Date();
+
 			let dataRecord = {
 				dream: this.dreamJob.title,
 				pastJob1: this.currentJob[0].title,
 				pastJob2: this.currentJob[1].title,
 				pastJob3: this.currentJob[2].title,
 				pastJob4: this.currentJob[3].title,
+                timestamp: date.toLocaleString(),
 			}
 			jobRef.set(dataRecord)
 			//dataRef.set({currentJobs: this.currentJob[0].title});
