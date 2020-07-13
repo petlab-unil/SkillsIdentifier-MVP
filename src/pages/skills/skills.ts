@@ -83,62 +83,57 @@ export class SkillsPage {
 	}
 
 	// gets the most important skills for the target job from the Data@Work API
-	identifyRequiredSkills() {
+	async identifyRequiredSkills() {
 		// get skills for the target (dream) job and record the top ten skills
-		this._jobDataProvider.getSkillset(this.dreamJob.uuid)
-						.subscribe(res => {
-							console.log(res);
-							this.skillsRequired = [];
-							let j = 0;
-							let i = 0;
-							while ( j < 10 && i < 100 ) {
-								if (res.skills[i].skill_type == "skill") {
-									this.skillsRequired.push(res.skills[i])
-									this.skillsRequiredTitles.push(res.skills[i].skill_name)
-									j++;
-								}
-								i++;
-							}
-							this.identifyRelevantSkills()
-						})
+		var res = await this._jobDataProvider.getSkillset(this.dreamJob.uuid);
+		// console.log(res);
+		this.skillsRequired = [];
+		let j = 0;
+		let i = 0;
+		while ( j < 10 && i < res.skills.length ) {
+			if (res.skills[i].skill_type == "skill") {
+				this.skillsRequired.push(res.skills[i])
+				this.skillsRequiredTitles.push(res.skills[i].skill_name)
+				j++;
+			}
+			i++;
+		}
+		this.identifyRelevantSkills();
 	}
 
 	// reviews the skills for each past job using the Data@Work API and identifies
 	//  skills that are relevant to the target job
-	identifyRelevantSkills() {
+	async identifyRelevantSkills() {
 		console.log(this.skillsRequired)
 		console.log("CURRENT JOB", this.currentJob);
 		// get skills for each past job and record the top 5 for each in the "skillsPossessed" array
 
-		this.currentJob.forEach((job, index) =>{
+		this.currentJob.forEach(async (job, index) =>{
 
 			if (job.title != '') {
 				console.log("Index = " + index)
-				this._jobDataProvider.getSkillset(job.uuid)
-					.subscribe(res => {
-						console.log("skill response for " + job.title);
-						console.log(res);
-						// this.skillsPossessed[index] = [];
-						var k = 0;
-						var max = 3;
-						// include only skills that are also relevant for the target job
-						for (var i = 0; i < 30; i++) {
-							if (k < max && this.skillsRequiredTitles.includes(res.skills[i].skill_name)) {
-								this.skillsPossessed[index].push(res.skills[i]);
-								console.log("ADDED: " + res.skills[i].skill_name);
-								k++;
-							} else if (k < max) {
-								console.log("NOT REQUIRED: " + res.skills[i].skill_name)
-							}
-						}
-						// if we found any relevant skills for this job, include it in the resume
-						if (k > 0) {
-							this.createResumeEntry(index)
-						}
-				})
+				var res = await this._jobDataProvider.getSkillset(job.uuid);
+				// console.log("skill response for " + job.title);
+				// console.log(res);
+				// this.skillsPossessed[index] = [];
+				var k = 0;
+				var max = 3;
+				// include only skills that are also relevant for the target job
+				for (var i = 0; i < 30; i++) {
+					if (k < max && this.skillsRequiredTitles.includes(res.skills[i].skill_name)) {
+						this.skillsPossessed[index].push(res.skills[i]);
+						// console.log("ADDED: " + res.skills[i].skill_name);
+						k++;
+					} else if (k < max) {
+						console.log("NOT REQUIRED: " + res.skills[i].skill_name)
+					}
+				}
+				// if we found any relevant skills for this job, include it in the resume
+				if (k > 0) {
+					this.createResumeEntry(index)
+				}
 			}
-		})
-
+		});
 	}
 
 	createResumeEntry(idx: number) {

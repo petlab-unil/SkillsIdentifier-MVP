@@ -86,18 +86,13 @@ export class HomePage {
 
 	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
 
-	onInputCurrentJob(event: any, i: number){
+	async onInputCurrentJob(event: any, i: number){
 
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
-			if (this.currentJob[i].title.length > 3)
-				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
-				.subscribe(res => {
-					this.jobAutocompleteList = res;
-					this.currentSelected = 0;
-				},
-				err => {
-					this.jobAutocompleteList = []
-				})
+			if (this.currentJob[i].title.length > 3) {
+				this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title);
+				this.currentSelected = 0;
+			}
 			else if (this.currentJob[i].title.length == 0)
 				this.jobAutocompleteList = []
 
@@ -112,17 +107,12 @@ export class HomePage {
 		}
 	}
 
-	onInputDreamJob(event: any){
+	async onInputDreamJob(event: any){
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
-			if (this.dreamJob.title.length > 3)
-				this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
-				.subscribe(res => {
-					this.jobAutocompleteList = res;
-					this.currentSelected = 0;
-				},
-				err => {
-					this.jobAutocompleteList = []
-				})
+			if (this.dreamJob.title.length > 3) {
+				this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(this.dreamJob.title);
+				this.currentSelected = 0;
+			}
 			else if (this.dreamJob.title.length == 0)
 				this.jobAutocompleteList = []
 
@@ -137,12 +127,10 @@ export class HomePage {
 		}
 	}
 
-	onChangeJobTitle(event: any){
-		if (event.value.length > 3)
-			this._jobDataProvider.getJobAutocomplete(event.value)
-			.subscribe(res => {
-				this.jobAutocompleteList = res;
-			})
+	async onChangeJobTitle(event: any){
+		if (event.value.length > 3) {
+			this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(event.value);
+		}
 		if (event.value.length == 0)
 			this.jobAutocompleteList = []
 	}
