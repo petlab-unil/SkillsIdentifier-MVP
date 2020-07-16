@@ -14,7 +14,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Jessie990204',
+  password: 'zxc123',
   database: 'SkillsIdentifier'
 });
 
@@ -51,6 +51,23 @@ app.get('/skillfrench/:uuid', function(req, res) {
     else {
       res.json("");
     }
+  });
+});
+
+// job autocomplete
+app.get('/autocomplete/:str', function(req, res) {
+  connection.query("select ID as jobId,French as jobTitle from Job where French like '%" + req.params.str + "'%", (err, rows) => {
+    if (err) throw err;
+    res.json(rows);
+  });
+});
+
+// job id to find skills
+app.get('/relatedskills/:jobid', function(req, res) {
+  connection.query("select ID as elementId,French as elementTitle from Element where ElementGroup = 'Skills' and ID in " +
+    "(select ElementID from JobElements where JobID = " + req.params.jobid + " order by ImportanceValue desc)", (err, rows) => {
+    if (err) throw err;
+    res.json(rows);
   });
 });
 
