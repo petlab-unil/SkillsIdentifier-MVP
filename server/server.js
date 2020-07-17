@@ -56,7 +56,7 @@ app.get('/skillfrench/:uuid', function(req, res) {
 
 // job autocomplete
 app.get('/autocomplete/:str', function(req, res) {
-  connection.query("select ID as jobId,French as jobTitle from Job where French like '%" + req.params.str + "'%", (err, rows) => {
+  connection.query("select ID as jobId,French as jobTitle from Job where French like '%" + req.params.str + "%'", (err, rows) => {
     if (err) throw err;
     res.json(rows);
   });
@@ -64,8 +64,7 @@ app.get('/autocomplete/:str', function(req, res) {
 
 // job id to find skills
 app.get('/relatedskills/:jobid', function(req, res) {
-  connection.query("select ID as elementId,French as elementTitle from Element where ElementGroup = 'Skills' and ID in " +
-    "(select ElementID from JobElements where JobID = " + req.params.jobid + " order by ImportanceValue desc)", (err, rows) => {
+  connection.query("select E.ID as elementId,E.French as elementTitle from JobElements as JE left join Element as E on JE.ElementID = E.ID where JE.JobID = " +req.params.jobid + " and E.ElementGroup = 'Skills' order by importanceValue desc", (err, rows) => {
     if (err) throw err;
     res.json(rows);
   });

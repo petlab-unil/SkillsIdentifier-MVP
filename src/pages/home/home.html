@@ -27,7 +27,7 @@
 						</ion-item>
 					</ion-list>
 			      	<div class="error">
-			        	<p *ngIf="infoForm.get('currentJobTitleZero').touched && currentJob[0].uuid==''">
+			        	<p *ngIf="infoForm.get('currentJobTitleZero').touched && currentJob[0].id==''">
 			            	<ion-icon name="alert"></ion-icon>
 			            	  Please input a valid recent job
 			        	</p>
@@ -56,7 +56,7 @@
 						</ion-item>
 					</ion-list>
 			      	<div class="error">
-			        	<p *ngIf="infoForm.get('currentJobTitleOne').touched && currentJob[1].uuid==''">
+			        	<p *ngIf="infoForm.get('currentJobTitleOne').touched && currentJob[1].id==''">
 			            	<ion-icon name="alert"></ion-icon>
 			            	  Please input a valid recent job
 			        	</p>
@@ -85,7 +85,7 @@
 						</ion-item>
 					</ion-list>
 			      	<div class="error">
-			        	<p *ngIf="infoForm.get('currentJobTitleTwo').touched && currentJob[2].uuid==''">
+			        	<p *ngIf="infoForm.get('currentJobTitleTwo').touched && currentJob[2].id==''">
 			            	<ion-icon name="alert"></ion-icon>
 			            	  Please input a valid recent job
 			        	</p>
@@ -114,7 +114,7 @@
 						</ion-item>
 					</ion-list>
 			      	<div class="error">
-			        	<p *ngIf="infoForm.get('currentJobTitleThree').touched && currentJob[3].uuid==''">
+			        	<p *ngIf="infoForm.get('currentJobTitleThree').touched && currentJob[3].id==''">
 			            	<ion-icon name="alert"></ion-icon>
 			            	  Please input a valid recent job
 			        	</p>
@@ -145,7 +145,7 @@
 						</ion-item>
 					</ion-list>
 			      	<div class="error">
-			          	<p *ngIf="infoForm.get('dreamJobTitle').touched && dreamJob.uuid==''">
+			          	<p *ngIf="infoForm.get('dreamJobTitle').touched && dreamJob.id==''">
 			            	<ion-icon name="alert"></ion-icon>
 			            	  Please input a valid recent job
 			        	</p>
@@ -153,7 +153,7 @@
 			 	</div>
 
 
-		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].uuid == '' || dreamJob.uuid =='' " (click)="logData()">CONTINUE</button>
+		      	<button class="submit" type="submit" ion-button block color="primary" [disabled]="currentJob[0].id == '' || dreamJob.id =='' " (click)="logData()">CONTINUE</button>
 
 		    </form>
 
