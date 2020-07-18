@@ -12,8 +12,8 @@ export class JobDataProvider {
   private _url: string;
   private _server_url: string;
 
-  currentJob = [ {'title': '', 'uuid': '', 'parent_uuid': ''},  {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''} ];
-  dreamJob = {'title': '', 'uuid': '', 'parent_uuid': ''};
+  currentJob = [ {'title': '', 'id': ''},  {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''} ];
+  dreamJob = {'title': '', 'id': ''};
   location = '';
 
 	constructor(public http: HttpClient) {
@@ -39,16 +39,7 @@ export class JobDataProvider {
 		return this.http.get(this._server_url + "autocomplete/" + jobTitle).map((res:any) => res);
     }
 
-    async getSkillset(uuid: string) {
-	var result = await this.http.get(this._dataAtWork_url + "jobs/" + uuid + "/related_skills").map((res:any) => res).toPromise();
-	result.skills = result.skills.slice(0, 15);
-	for (var i = 0; i < result.skills.length; i++) {
-		var french = await this.http.get(this._server_url + "skillfrench/" + result.skills[i].skill_uuid).map((res:any) => res).toPromise();
-		if (french != "") {
-			result.skills[i].skill_name = french;
-		}
-	}
-	// console.log(result);
-	return result;
+    getSkillset(id: string) {
+		return this.http.get(this._server_url + "relatedskills/" + id).map((res:any) => res);
     }
 }

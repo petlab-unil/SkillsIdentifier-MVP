@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar hideBackButton>
 		<ion-title>
-		    Your New Resume Template! Review the information provided and edit the content as needed
+			Votre nouveau modèle de CV! Vérifiez les informations fournies et modifiez le contenu si nécessaire
 		</ion-title>
 	</ion-navbar>
 
@@ -24,11 +24,11 @@
 		<div col-8 class="resume">
 <!-- <<<<<<< HEAD -->
 			<div class="resume-textarea">
-				<h5>Please provide your personal information here: </h5>
+				<h5>Veuillez fournir vos informations personnelles ici: </h5>
 				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
 			</div>
 			<div class="resume-textarea">
-				<h5>Please review the information provided and edit the resume content as needed:</h5>
+				<h5>Veuillez consulter les informations fournies et modifier le contenu du CV si nécessaire:</h5>
 				<div *ngFor="let entry of resumeTemplate; let idx=index">
 					<ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>
 				</div>
@@ -43,7 +43,7 @@
 		</div>
 
 		<div col-4 class="control">
-			<button ion-button (click)="copyResume()" value="Copy Resume" >Copy Resume</button>
+			<button ion-button (click)="copyResume()" value="Copy Resume" >Copier le CV</button>
 	        <!-- <form #emailForm="ngForm">
 
 	        	<ion-label stacked>Please provide your email address:</ion-label>

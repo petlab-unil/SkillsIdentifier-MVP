@@ -31,8 +31,8 @@ const firebaseConfig = {
 export class HomePage {
 
 	private db: any;
-	currentJob = [ {'title': '', 'uuid': '', 'parent_uuid': ''},  {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''} ];
-	dreamJob = {'title': '', 'uuid': '', 'parent_uuid': ''};
+	currentJob = [ {'title': '', 'id': ''},  {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''} ];
+	dreamJob = {'title': '', 'id': ''};
 
 	infoForm: FormGroup;
 
@@ -90,8 +90,14 @@ export class HomePage {
 
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.currentJob[i].title.length > 3) {
-				this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title);
-				this.currentSelected = 0;
+				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
+				.subscribe(res => {
+					this.jobAutocompleteList = res;
+					this.currentSelected = 0;
+				},
+				err => {
+					this.jobAutocompleteList = []
+				})
 			}
 			else if (this.currentJob[i].title.length == 0)
 				this.jobAutocompleteList = []
@@ -110,8 +116,14 @@ export class HomePage {
 	async onInputDreamJob(event: any){
 		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
 			if (this.dreamJob.title.length > 3) {
-				this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(this.dreamJob.title);
-				this.currentSelected = 0;
+				this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
+				.subscribe(res => {
+					this.jobAutocompleteList = res;
+					this.currentSelected = 0;
+				},
+				err => {
+					this.jobAutocompleteList = []
+				})
 			}
 			else if (this.dreamJob.title.length == 0)
 				this.jobAutocompleteList = []
@@ -129,7 +141,10 @@ export class HomePage {
 
 	async onChangeJobTitle(event: any){
 		if (event.value.length > 3) {
-			this.jobAutocompleteList = await this._jobDataProvider.getJobAutocomplete(event.value);
+			this._jobDataProvider.getJobAutocomplete(event.value)
+			.subscribe(res => {
+				this.jobAutocompleteList = res;
+			})
 		}
 		if (event.value.length == 0)
 			this.jobAutocompleteList = []
@@ -145,13 +160,11 @@ export class HomePage {
 		this.jobAutocompleteList = [];
 
 		if (index <= 5) {
-			this.currentJob[index].title = job.suggestion;
-			this.currentJob[index].uuid = job.uuid;
-			this.currentJob[index].parent_uuid = job.parent_uuid;
+			this.currentJob[index].title = job.jobTitle;
+			this.currentJob[index].id = job.jobId;
 		} else if (index == 6) {
-			this.dreamJob.title = job.suggestion;
-			this.dreamJob.uuid = job.uuid;
-			this.dreamJob.parent_uuid = job.parent_uuid;
+			this.dreamJob.title = job.jobTitle;
+			this.dreamJob.id = job.jobId;
 		}
 	}
 
@@ -164,7 +177,6 @@ export class HomePage {
 		else {
 			this.showJobAutocompleteList = -1
 		}
-
 	}
 
 	// Clear the job title list when the text field is cleared by either the clear button or deleted by the user

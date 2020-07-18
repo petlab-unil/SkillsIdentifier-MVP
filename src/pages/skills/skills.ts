@@ -21,8 +21,8 @@ export class SkillsPage {
 
 	preview: any;
 
-	currentJob = [ {'title': '', 'uuid': '', 'parent_uuid': ''},  {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''}, {'title': '', 'uuid': '', 'parent_uuid': ''} ];
-	dreamJob = {'title': '', 'uuid': '', 'parent_uuid': ''};
+	currentJob = [ {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''} ];
+	dreamJob = {'title': '', 'id': ''};
 
 	skillsRequired: skillInformation[] = [];
 	skillsRequiredTitles: string[] = [];
@@ -36,7 +36,7 @@ export class SkillsPage {
 	skillsNeededLength: number;
   // resume lines need to be stored as objects; there are issues with strings being a primitive.
 	resumeTemplate: any = [];
-	resumeIntro: string = "<Enter your full name here>\n<Enter your phone number here>\n<Enter your email here>"
+	resumeIntro: string = "<Entrez votre nom complet ici>\n<Entrez votre numéro de téléphone ici>\n<Entrez votre email ici>"
 
 	emailForm: FormGroup;
 	emailAddress: string = '';
@@ -85,20 +85,16 @@ export class SkillsPage {
 	// gets the most important skills for the target job from the Data@Work API
 	async identifyRequiredSkills() {
 		// get skills for the target (dream) job and record the top ten skills
-		var res = await this._jobDataProvider.getSkillset(this.dreamJob.uuid);
-		// console.log(res);
-		this.skillsRequired = [];
-		let j = 0;
-		let i = 0;
-		while ( j < 10 && i < res.skills.length ) {
-			if (res.skills[i].skill_type == "skill") {
-				this.skillsRequired.push(res.skills[i])
-				this.skillsRequiredTitles.push(res.skills[i].skill_name)
-				j++;
+		this._jobDataProvider.getSkillset(this.dreamJob.id)
+		.subscribe(res => {
+			//console.log(res);
+			this.skillsRequired = [];
+			for (var i = 0; i < res.length; i++) {
+				this.skillsRequired.push(res[i])
+				this.skillsRequiredTitles.push(res[i].elementTitle)
 			}
-			i++;
-		}
-		this.identifyRelevantSkills();
+			this.identifyRelevantSkills()
+		})
 	}
 
 	// reviews the skills for each past job using the Data@Work API and identifies
@@ -112,26 +108,28 @@ export class SkillsPage {
 
 			if (job.title != '') {
 				console.log("Index = " + index)
-				var res = await this._jobDataProvider.getSkillset(job.uuid);
-				// console.log("skill response for " + job.title);
-				// console.log(res);
-				// this.skillsPossessed[index] = [];
-				var k = 0;
-				var max = 3;
-				// include only skills that are also relevant for the target job
-				for (var i = 0; i < 30; i++) {
-					if (k < max && this.skillsRequiredTitles.includes(res.skills[i].skill_name)) {
-						this.skillsPossessed[index].push(res.skills[i]);
-						// console.log("ADDED: " + res.skills[i].skill_name);
-						k++;
-					} else if (k < max) {
-						console.log("NOT REQUIRED: " + res.skills[i].skill_name)
-					}
-				}
-				// if we found any relevant skills for this job, include it in the resume
-				if (k > 0) {
-					this.createResumeEntry(index)
-				}
+				this._jobDataProvider.getSkillset(job.id)
+					.subscribe(res => {
+						//console.log("skill response for " + job.title);
+						//console.log(res);
+						// this.skillsPossessed[index] = [];
+						var k = 0;
+						var max = 3;
+						// include only skills that are also relevant for the target job
+						for (var i = 0; i < 30; i++) {
+							if (k < max && this.skillsRequiredTitles.includes(res[i].elementTitle)) {
+								this.skillsPossessed[index].push(res[i]);
+								//console.log("ADDED: " + res[i].elementTitle);
+								k++;
+							} else if (k < max) {
+								//console.log("NOT REQUIRED: " + res[i].elementTitle)
+							}
+						}
+						// if we found any relevant skills for this job, include it in the resume
+						if (k > 0) {
+							this.createResumeEntry(index)
+						}
+				})
 			}
 		});
 	}
@@ -142,7 +140,7 @@ export class SkillsPage {
 		if (this.skillsPossessed[index] != []) {
 			this.resumeTemplate[index] = { value: job.title + "\n" };
 			for (let skill of this.skillsPossessed[index]) {
-				this.resumeTemplate[index].value = this.resumeTemplate[index].value + '- ' + skill.skill_name + "\n";
+				this.resumeTemplate[index].value = this.resumeTemplate[index].value + '- ' + skill.elementTitle + "\n";
 			}
 		}
 		console.log(this.resumeTemplate[index].value)
@@ -174,9 +172,9 @@ export class SkillsPage {
 
   	presentAlert() {
 	  let alert = this._alertCtrl.create({
-	    title: 'Congratulations!',
-	    subTitle: 'Your new resume is copied',
-	    buttons: ['Dismiss']
+	    title: 'Félicitations!',
+	    subTitle: 'Votre nouveau CV est copié',
+	    buttons: ['Rejeter']
 	  });
 	  console.log("alert")
 	  alert.present();
