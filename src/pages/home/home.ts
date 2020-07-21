@@ -47,8 +47,15 @@ export class HomePage {
 	constructor(public navCtrl: NavController,
 				public modalCtrl: ModalController,
 				private _jobDataProvider: JobDataProvider) {
-			 	firebase.initializeApp(firebaseConfig);
-				this.db = firebase.database();
+				try {
+					firebase.initializeApp(firebaseConfig);
+					this.db = firebase.database();
+				}
+				catch (err) {
+					firebase.app();
+					this.db = firebase.database();
+				}
+			 	
 	}
 
 	ngOnInit(){
