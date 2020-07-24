@@ -14,9 +14,10 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '******',
+  password: 'SI2020UNIL?#',
   database: 'SkillsIdentifier'
 });
+
 
 // test api
 app.get('/test', function(req, res) {
@@ -70,7 +71,7 @@ app.get('/relatedskills/:jobid', function(req, res) {
   });
 });
 
-var server = app.listen(8080, function () {
+var server = app.listen(3000, function () { // Changed from 8080
   var host = server.address().address
   var port = server.address().port
   console.log("server address is http://localhost:%s", port)
