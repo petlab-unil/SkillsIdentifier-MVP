@@ -19,7 +19,7 @@ export class JobDataProvider {
 	constructor(public http: HttpClient) {
     	console.log('Hello JobDataProvider Provider');
 		this._dataAtWork_url = "https://api.dataatwork.org/v1/";
-		this._server_url = "http://recherche-emploi.unil.ch/api/";
+		this._server_url = "https://recherche-emploi.unil.ch/api/";
         // this._url = "http://localhost:8000/api/v1/";
         this._url = "http://dreamgig.me:5000/api/v1/"
   	}
