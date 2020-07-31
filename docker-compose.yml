@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  front-end:
+    build:
+      context: .
+      dockerfile: front.Dockerfile
+    container_name: front-end
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - 8100:8100
+
+  back-end:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    env_file:
+      - .env
+    environment:
+      - DB_HOSTNAME=db
+    container_name: back-end
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - sql-network
+
+  db:
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    container_name: db
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_HOST: "%"
+    networks:
+      - sql-network
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: "mysqladmin ping -h localhost"
+      interval: 1s
+      timeout: 1s
+      retries: 60
+
+networks:
+  sql-network:
+    driver: bridge
