@@ -1,27 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController, IonicPage } from 'ionic-angular';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component} from '@angular/core';
+import {NavController, ModalController, IonicPage} from 'ionic-angular';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import { JobDataProvider } from '../../providers/job-data/job-data';
-import { jobInformation} from '../../assets/data/dataModel';
-import { SkillsPage } from '../skills/skills';
+import {JobDataProvider} from '../../providers/job-data/job-data';
 import firebase from 'firebase';
 
 const firebaseConfig = {
-	apiKey: "AIzaSyAxfa8y78nO9x_mIPkxJpLtzSa7RGt99_o",
-	authDomain: "skillsidentifier.firebaseapp.com",
-	databaseURL: "https://skillsidentifier.firebaseio.com",
-	projectId: "skillsidentifier",
-	storageBucket: "skillsidentifier.appspot.com",
-	messagingSenderId: "93690322104"
-}
+  apiKey: "AIzaSyAxfa8y78nO9x_mIPkxJpLtzSa7RGt99_o",
+  authDomain: "skillsidentifier.firebaseapp.com",
+  databaseURL: "https://skillsidentifier.firebaseio.com",
+  projectId: "skillsidentifier",
+  storageBucket: "skillsidentifier.appspot.com",
+  messagingSenderId: "93690322104"
+};
 // import { ModalHomePage } from '../modal-home/modal-home';
 
 // import { FootbarComponent } from '../../components/footbar/footbar';
 
 @IonicPage({
-	name: "home",
-	segment: ""
+  name: "home",
+  segment: ""
 })
 @Component({
   selector: 'page-home',
@@ -30,186 +28,181 @@ const firebaseConfig = {
 
 export class HomePage {
 
-	private db: any;
-	currentJob = [ {'title': '', 'id': ''},  {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''} ];
-	dreamJob = {'title': '', 'id': ''};
+  private db: any;
+  currentJob = [{'title': '', 'id': ''}, {'title': '', 'id': ''}, {'title': '', 'id': ''}, {
+    'title': '',
+    'id': ''
+  }, {'title': '', 'id': ''}, {'title': '', 'id': ''}];
+  dreamJob = {'title': '', 'id': ''};
 
-	infoForm: FormGroup;
+  infoForm: FormGroup;
 
-	jobAutocompleteList : any[] = [];
-	showJobAutocompleteList = -1;
+  jobAutocompleteList: any[] = [];
+  showJobAutocompleteList = -1;
 
 
-	// currentSelected is used to store the index of the current selected item in the autocomplete list
+  // currentSelected is used to store the index of the current selected item in the autocomplete list
 
-	currentSelected: number = 0;
+  currentSelected: number = 0;
 
-	constructor(public navCtrl: NavController,
-				public modalCtrl: ModalController,
-				private _jobDataProvider: JobDataProvider) {
-				try {
-					firebase.initializeApp(firebaseConfig);
-					this.db = firebase.database();
-				}
-				catch (err) {
-					firebase.app();
-					this.db = firebase.database();
-				}
-			 	
-	}
+  constructor(public navCtrl: NavController,
+              public modalCtrl: ModalController,
+              private _jobDataProvider: JobDataProvider) {
+    try {
+      firebase.initializeApp(firebaseConfig);
+      this.db = firebase.database();
+    } catch (err) {
+      firebase.app();
+      this.db = firebase.database();
+    }
 
-	ngOnInit(){
-		this.infoForm = new FormGroup({
-			currentJobTitleZero: new FormControl('', [Validators.required]),
-			currentJobTitleOne: new FormControl('', [Validators.required]),
-			currentJobTitleTwo: new FormControl('', [Validators.required]),
-			currentJobTitleThree: new FormControl('', [Validators.required]),
-			// currentJobTitleFour: new FormControl('', [Validators.required]),
-			// currentJobTitleFive: new FormControl('', [Validators.required]),
-			dreamJobTitle: new FormControl('', [Validators.required]),
-		})
+  }
 
-		// this.openModal();
+  ngOnInit() {
+    this.infoForm = new FormGroup({
+      currentJobTitleZero: new FormControl('', [Validators.required]),
+      currentJobTitleOne: new FormControl('', [Validators.required]),
+      currentJobTitleTwo: new FormControl('', [Validators.required]),
+      currentJobTitleThree: new FormControl('', [Validators.required]),
+      // currentJobTitleFour: new FormControl('', [Validators.required]),
+      // currentJobTitleFive: new FormControl('', [Validators.required]),
+      dreamJobTitle: new FormControl('', [Validators.required]),
+    });
 
-	}
+    // this.openModal();
 
-	// openModal(){
-	// 	const introModal = this.modalCtrl.create('ModalHomePage')
-	// 	introModal.present();
-	// }
+  }
 
-	pushPage(){
+  // openModal(){
+  // 	const introModal = this.modalCtrl.create('ModalHomePage')
+  // 	introModal.present();
+  // }
 
-		// this._jobDataProvider.location = this.location;
+  pushPage() {
 
-		// TODO: fix this logic
+    // this._jobDataProvider.location = this.location;
 
-		this._jobDataProvider.setCurrentJob(this.currentJob);
-		this._jobDataProvider.setDreamJob(this.dreamJob);
+    // TODO: fix this logic
 
-		this.navCtrl.push("skills")
+    this._jobDataProvider.setCurrentJob(this.currentJob);
+    this._jobDataProvider.setDreamJob(this.dreamJob);
 
-	}
+    this.navCtrl.push("skills");
 
-	// controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
+  }
 
-	async onInputCurrentJob(event: any, i: number){
+  // controller of the current job text field -- to deal with arrow keys, enter key, and autocompletion
 
-		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
-			if (this.currentJob[i].title.length > 3) {
-				this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
-				.subscribe(res => {
-					this.jobAutocompleteList = res;
-					this.currentSelected = 0;
-				},
-				err => {
-					this.jobAutocompleteList = []
-				})
-			}
-			else if (this.currentJob[i].title.length == 0)
-				this.jobAutocompleteList = []
+  async onInputCurrentJob(event: any, i: number) {
 
-		if (event.key == "ArrowDown") {
-			this.currentSelected ++;
-		}
-		else if (event.key == "ArrowUp") {
-			this.currentSelected --;
-		}
-		else if (event.key == "Enter") {
-			this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 1)
-		}
-	}
+    if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
+      if (this.currentJob[i].title.length) {
+        this._jobDataProvider.getJobAutocomplete(this.currentJob[i].title)
+          .subscribe(res => {
+              this.jobAutocompleteList = res;
+              this.currentSelected = 0;
+            },
+            err => {
+              this.jobAutocompleteList = [];
+            });
+      } else if (this.currentJob[i].title.length == 0)
+        this.jobAutocompleteList = [];
 
-	async onInputDreamJob(event: any){
-		if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
-			if (this.dreamJob.title.length > 3) {
-				this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
-				.subscribe(res => {
-					this.jobAutocompleteList = res;
-					this.currentSelected = 0;
-				},
-				err => {
-					this.jobAutocompleteList = []
-				})
-			}
-			else if (this.dreamJob.title.length == 0)
-				this.jobAutocompleteList = []
+    if (event.key == "ArrowDown") {
+      this.currentSelected++;
+    } else if (event.key == "ArrowUp") {
+      this.currentSelected--;
+    } else if (event.key == "Enter") {
+      this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 1);
+    }
+  }
 
-		if (event.key == "ArrowDown" && this.currentSelected < this.jobAutocompleteList.length) {
-			this.currentSelected ++;
-		}
-		else if (event.key == "ArrowUp" && this.currentSelected > 0) {
-			this.currentSelected --;
-		}
-		else if (event.key == "Enter") {
-			this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 2)
-		}
-	}
+  async onInputDreamJob(event: any) {
+    if (event.key != "ArrowDown" && event.key != "ArrowUp" && event.key != "Enter")
+      if (this.dreamJob.title.length > 3) {
+        this._jobDataProvider.getJobAutocomplete(this.dreamJob.title)
+          .subscribe(res => {
+              this.jobAutocompleteList = res;
+              this.currentSelected = 0;
+            },
+            err => {
+              this.jobAutocompleteList = [];
+            });
+      } else if (this.dreamJob.title.length == 0)
+        this.jobAutocompleteList = [];
 
-	async onChangeJobTitle(event: any){
-		if (event.value.length > 3) {
-			this._jobDataProvider.getJobAutocomplete(event.value)
-			.subscribe(res => {
-				this.jobAutocompleteList = res;
-			})
-		}
-		if (event.value.length == 0)
-			this.jobAutocompleteList = []
-	}
+    if (event.key == "ArrowDown" && this.currentSelected < this.jobAutocompleteList.length) {
+      this.currentSelected++;
+    } else if (event.key == "ArrowUp" && this.currentSelected > 0) {
+      this.currentSelected--;
+    } else if (event.key == "Enter") {
+      this.onSelectJobTitle(this.jobAutocompleteList[this.currentSelected], 2);
+    }
+  }
 
-	onHoverJobTitle(index: number){
-		this.currentSelected = index;
-	}
+  async onChangeJobTitle(event: any) {
+    if (event.value.length > 3) {
+      this._jobDataProvider.getJobAutocomplete(event.value)
+        .subscribe(res => {
+          this.jobAutocompleteList = res;
+        });
+    }
+    if (event.value.length == 0)
+      this.jobAutocompleteList = [];
+  }
 
-	// Users select the job title from the title list
+  onHoverJobTitle(index: number) {
+    this.currentSelected = index;
+  }
 
-	onSelectJobTitle(job: any, index: number){
-		this.jobAutocompleteList = [];
+  // Users select the job title from the title list
 
-		if (index <= 5) {
-			this.currentJob[index].title = job.jobTitle;
-			this.currentJob[index].id = job.jobId;
-		} else if (index == 6) {
-			this.dreamJob.title = job.jobTitle;
-			this.dreamJob.id = job.jobId;
-		}
-	}
+  onSelectJobTitle(job: any, index: number) {
+    this.jobAutocompleteList = [];
 
-	// When a job text field is focused
+    if (index <= 5) {
+      this.currentJob[index].title = job.jobTitle;
+      this.currentJob[index].id = job.jobId;
+    } else if (index == 6) {
+      this.dreamJob.title = job.jobTitle;
+      this.dreamJob.id = job.jobId;
+    }
+  }
 
-	onFocus(index: number){
-		if (index >= 0 ){
-			this.showJobAutocompleteList = index
-		}
-		else {
-			this.showJobAutocompleteList = -1
-		}
-	}
+  // When a job text field is focused
 
-	// Clear the job title list when the text field is cleared by either the clear button or deleted by the user
+  onFocus(index: number) {
+    if (index >= 0) {
+      this.showJobAutocompleteList = index;
+    } else {
+      this.showJobAutocompleteList = -1;
+    }
+  }
 
-	onClear(index: number){
-		if (index < 6 && this.currentJob[index].title == '')
-			this.jobAutocompleteList = []
-		else if (this.dreamJob.title == '' && index == 6)
-			this.jobAutocompleteList = []
-	}
+  // Clear the job title list when the text field is cleared by either the clear button or deleted by the user
 
-	private logData(){
-			let dataRef = this.db.ref('/entries');
-			let jobRef = dataRef.push();
-            let date = new Date();
+  onClear(index: number) {
+    if (index < 6 && this.currentJob[index].title == '')
+      this.jobAutocompleteList = [];
+    else if (this.dreamJob.title == '' && index == 6)
+      this.jobAutocompleteList = [];
+  }
 
-			let dataRecord = {
-				dream: this.dreamJob.title,
-				pastJob1: this.currentJob[0].title,
-				pastJob2: this.currentJob[1].title,
-				pastJob3: this.currentJob[2].title,
-				pastJob4: this.currentJob[3].title,
-                timestamp: date.toLocaleString(),
-			}
-			jobRef.set(dataRecord)
-			//dataRef.set({currentJobs: this.currentJob[0].title});
-	}
+  private logData() {
+    let dataRef = this.db.ref('/entries');
+    let jobRef = dataRef.push();
+    let date = new Date();
+
+    let dataRecord = {
+      dream: this.dreamJob.title,
+      pastJob1: this.currentJob[0].title,
+      pastJob2: this.currentJob[1].title,
+      pastJob3: this.currentJob[2].title,
+      pastJob4: this.currentJob[3].title,
+      timestamp: date.toLocaleString(),
+    };
+    jobRef.set(dataRecord);
+    //dataRef.set({currentJobs: this.currentJob[0].title});
+  }
 
 }
