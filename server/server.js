@@ -16,7 +16,7 @@
   const {MYSQL_ROOT_PASSWORD, DB_HOSTNAME} = process.env;
 
   const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
+  const connection = await mysql.createPool({
     host: DB_HOSTNAME,
     user: "root",
     password: MYSQL_ROOT_PASSWORD,
@@ -44,6 +44,7 @@
     const query = `select * from ParentJobTranslation where ONETSOCCode = "${req.params.onetsoccode}"`;
     try {
       const [rows, _] = await connection.query(query);
+
       if (rows.length)
         res.json(rows[0].French);
       else res.json("");
@@ -58,6 +59,7 @@
     const query = `select * from SkillTranslation where SkillUUId = '${req.params.uuid}'`;
     try {
       const [rows, _] = await connection.query(query);
+
       if (rows.length > 0) {
         res.json(rows[0].French);
       } else {
@@ -74,6 +76,7 @@
     const query = `select ID as jobId,French as jobTitle from Job where French like '%${req.params.str}%'`;
     try {
       const [rows, _] = await connection.query(query);
+
       res.json(rows);
     } catch (e) {
       res.status(500);
@@ -90,6 +93,7 @@
   `;
     try {
       const [rows, _]  = await connection.query(query);
+
       res.json(rows);
     } catch (e) {
       res.status(500);
