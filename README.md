@@ -7,6 +7,18 @@
 3. [Author](#author)
 4. [Acknowledgement](#acknowledgement)
 
+## Environment variables
+Set the values in the file `.env` as such:
+
+    MYSQL_ROOT_PASSWORD=
+    NODE_ENV={production||dev}
+    MYSQL_DATABASE=SkillsIdentifier
+    FRONT_DOCKERFILE={front.prod.Dockerfile||front.Dockerfile}
+
+
+## Build and run with docker compose
+    sudo docker-compose up
+
 ## Installation Instructions
 
 #### NodeJS

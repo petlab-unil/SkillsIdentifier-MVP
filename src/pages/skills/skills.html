@@ -1,64 +1,53 @@
 <ion-header>
-	<ion-navbar hideBackButton>
-		<ion-title>
-			Votre nouveau modèle de CV! Vérifiez les informations fournies et modifiez le contenu si nécessaire
-		</ion-title>
-	</ion-navbar>
+  <ion-navbar hideBackButton>
+    <ion-title>
+      Votre nouvelle liste de compétences
+    </ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-	<ion-row>
-		<!-- <div col-6>
-			<div *ngFor="let job of currentJob; let idx=index">
-				<h2>{{ job.title }}</h2>
-				<ul>
-					<li *ngFor = "let skill of skillsPossessed[idx]">
-				  <h2>{{ skill.skill_name }}</h2>
-				  <p>{{ skill.description }}</p>
-					</li>
-				</ul>
-			</div>
-		</div> -->
+  <ion-row>
+    <!-- <div col-6>
+      <div *ngFor="let job of currentJob; let idx=index">
+        <h2>{{ job.title }}</h2>
+        <ul>
+          <li *ngFor = "let skill of skillsPossessed[idx]">
+          <h2>{{ skill.skill_name }}</h2>
+          <p>{{ skill.description }}</p>
+          </li>
+        </ul>
+      </div>
+    </div> -->
 
-		<div col-8 class="resume">
-<!-- <<<<<<< HEAD -->
-			<div class="resume-textarea">
-				<h5>Veuillez fournir vos informations personnelles ici: </h5>
-				<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
-			</div>
-			<div class="resume-textarea">
-				<h5>Veuillez consulter les informations fournies et modifier le contenu du CV si nécessaire:</h5>
-				<div *ngFor="let entry of resumeTemplate; let idx=index">
-					<ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>
-				</div>
-<!-- =======
-			<ion-textarea [(ngModel)]="resumeIntro"></ion-textarea>
-			<div *ngFor="let entry of resumeTemplate; let idx = index">
-				<ion-textarea
-				[(ngModel)]="resumeTemplate[idx].value"
-				></ion-textarea>
->>>>>>> 35b1631497d8eba7037df27f72238d5fa942bd37 -->
-			</div>
-		</div>
+    <div col-8 class="resume">
+      <div class="resume-textarea">
+        <h5>En nous basant sur vos compétences passées, nous avons sélectionné les compétences suivantes qui
+          sont également utiles pour un emploi de {{dreamJob.title}}:</h5>
+        <div *ngFor="let entry of resumeTemplate; let idx=index">
+          <ion-textarea [(ngModel)]="resumeTemplate[idx].value"></ion-textarea>
+        </div>
+      </div>
+    </div>
 
-		<div col-4 class="control">
-			<button ion-button (click)="copyResume()" value="Copy Resume" >Copier le CV</button>
-	        <!-- <form #emailForm="ngForm">
+    <div col-4 class="control">
+      <button ion-button (click)="copyResume()" value="Copy Resume">Copier les compétences</button>
+      <!-- <form #emailForm="ngForm">
 
-	        	<ion-label stacked>Please provide your email address:</ion-label>
-		        <ion-input class="input"
-		        		   type="email" 
-						   [(ngModel)]="emailAddress"
-						   name="email"
-						   clearInput="on">		        				   
-				</ion-input>
+        <ion-label stacked>Please provide your email address:</ion-label>
+        <ion-input class="input"
+               type="email"
+           [(ngModel)]="emailAddress"
+           name="email"
+           clearInput="on">
+    </ion-input>
 
-					
 
-			</form>	 -->	
 
-		</div>
+  </form>	 -->
 
-	</ion-row>
+    </div>
+
+  </ion-row>
 </ion-content>
