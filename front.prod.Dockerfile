@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:latest as build
 
 WORKDIR /usr/src/SI-frontend
 
@@ -12,8 +12,12 @@ COPY tslint.json .
 COPY ionic.config.json .
 COPY angular.json .
 
-RUN npm run prod-build
+RUN cp src/environments/environment.prod.ts src/environments/environment.ts
 
-EXPOSE 8100
+RUN npm run build
 
-CMD ["npm", "run", "serve"]
+FROM nginx:latest
+
+COPY --from=build /usr/src/SI-frontend/www /usr/share/nginx/html
+
+RUN ls /usr/share/nginx/html/build

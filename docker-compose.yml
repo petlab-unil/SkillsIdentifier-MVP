@@ -4,13 +4,13 @@ services:
   front-end:
     build:
       context: .
-      dockerfile: front.Dockerfile
+      dockerfile: front.prod.Dockerfile
     container_name: front-end
     restart: unless-stopped
     env_file:
       - .env
     ports:
-      - 8100:8100
+      - 8100:80
 
   back-end:
     build:
