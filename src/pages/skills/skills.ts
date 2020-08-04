@@ -96,8 +96,8 @@ export class SkillsPage {
         //console.log(res);
         this.skillsRequired = res;
         res.forEach(({elementTitle}) => this.skillsRequiredTitles.push(elementTitle));
+        this.identifyRelevantSkills();
       });
-    this.identifyRelevantSkills();
   }
 
   // reviews the skills for each past job using the Data@Work API and identifies
@@ -120,10 +120,10 @@ export class SkillsPage {
               }
             }
             if (k) this.createResumeEntry(index);
-
           });
       }
     });
+    this.globalSkillsList.clear();
   }
 
   createResumeEntry(idx: number) {
